@@ -6,6 +6,7 @@ import requests
 
 def get_mp_coordinates():
     mps = {}
+    empties = []
 
     seating_plan_url ="http://www.parl.gc.ca/parliamentarians/en/floorplan"
     page = requests.get(seating_plan_url)
@@ -20,7 +21,6 @@ def get_mp_coordinates():
             mp = {}
             mp['row'] = rindex
             mp['column'] = cindex
-
             try:
                 name_array = cell.attrs['title'].split(" ")
 
@@ -33,14 +33,16 @@ def get_mp_coordinates():
 
                 mp['name'] = mp['name'].encode('utf8')
                 mp['gender'] = cell.attrs['gender']
+                mp['pid'] = cell['class'][-1].split("_")[-1]
+                mp['cid'] = cell.attrs['caucusid']
+                mps[mp['name']] = mp
             except KeyError:
                 try:
                     mp['name'] = cell['class'][0]
                 except:
                     mp['name'] = 'Separator'
-                mp['gender'] = "NA"
-            mps[mp['name']] = mp
-    return mps
+                empties.append(mp)
+    return mps, empties
 
 
 def save_mps(file, mps):
@@ -58,11 +60,23 @@ def save_mps(file, mps):
         mp.append(mp_data['gender'])
         mp.append(mp_data['row'])
         mp.append(mp_data['column'])
-        print mp
+        mp.append(mp_data['pid'])
+        mp.append(mp_data['cid'])
         mps_writer.writerow(mp);
 
     data.close()
     mps_file.close()
 
-mps = get_mp_coordinates()
-save_mps('mps_t.csv', mps)
+def save_non_mps(file, non_mps):
+    nmp_file = open(file, 'w')
+    nmp_writer = csv.writer(nmp_file)
+    nmp_writer.writerow(non_mps[0].keys())
+
+    for nmp in non_mps:
+        nmp_writer.writerow(nmp.values())
+
+    nmp_file.close()
+
+mps, non_mps = get_mp_coordinates()
+save_mps('../mps.csv', mps)
+save_non_mps('../non_mps.csv', non_mps)
