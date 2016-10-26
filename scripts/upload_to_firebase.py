@@ -1,4 +1,5 @@
 import csv
+import sys
 from firebase import firebase
 
 url = <URL>
@@ -27,7 +28,8 @@ for datum in data:
     try:
         # Must specify the second argument as the user specified id
         # Else an almost useless message is thrown.
-        firebase.put('/MembersOfParliament','%s %s' % (mp['Fname'], mp['Lname']), mp)
+        id = mp['Fname'].replace('.', " "), mp['Lname'].replace(".", " ")
+        firebase.put('/MembersOfParliament','%s %s' % id, mp)
     except:
         Error = sys.exc_info()[0]
         print "Unexpected error with", mp
