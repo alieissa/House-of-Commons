@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "d3": "^4.2.8",
-    "angular": "^1.5.8"
+    "angular": "^1.5.8",
+    "firebase": "^3.5.2"
   }
 }
