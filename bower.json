@@ -1,0 +1,22 @@
+{
+  "name": "house-of-commons",
+  "authors": [
+    "Ali Eissa"
+  ],
+  "description": "A re-production of the House of Commons seating plan app. Re-reproduces as a SPA using Angular 1.x and D3.js",
+  "main": "app.js",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "^4.2.8",
+    "angular": "^1.5.8"
+  }
+}
