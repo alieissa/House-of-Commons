@@ -1,0 +1,23 @@
+{
+  "name": "house-of-commons",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alieissa/House-of-Commons.git"
+  },
+  "author": "Ali Eissa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alieissa/House-of-Commons/issues"
+  },
+  "homepage": "https://github.com/alieissa/House-of-Commons#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
