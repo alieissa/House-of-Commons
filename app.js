@@ -5,6 +5,24 @@ const mpsRef = firebaseApp.database().ref('/MembersOfParliament')
 
 const height = 31;
 const width =  23;
+
+const provinces = [
+    "All Provinces and Territories",
+    "Alberta",
+    "British Columbia",
+    "Manitoba",
+    "New Brunswick",
+    "Newfoundland and Labrador",
+    "Nova Scotia",
+    "Northwest Territories",
+    "Nunavut",
+    "Ontario",
+    "Prince Edward Island",
+    "Quebec",
+    "Saskatchewan",
+    "Yukon"
+];
+
 const colours = {
     'Conservative': '#002395',
     'NDP': '#FF5800',
@@ -41,7 +59,6 @@ seatingBlocks.forEach((block, index, self) => {
     });
 
     govMps.then((mps) => {
-        console.log(index)
         renderMps(mps, block, index, 'government');
     });
 });
@@ -94,7 +111,6 @@ function renderMps(data, block, index, side) {
     let padding = 10;
     let blockStart = block[0];
     let blockEnd = block[1];
-    // let blockOffset = block[2];
     let blockOffset = (blockStart * width) - (index * padding);
 
     // Group by seating block
@@ -129,3 +145,28 @@ function renderMps(data, block, index, side) {
         console.log(d)
     })
 }
+
+function handleOptionsChange() {
+    let gender = d3.select('#FloorPlan-GenderList').property('value');
+    let id = d3.select("#FloorPlan-ProvinceList").property('value');
+
+    d3.selectAll('rect')
+    .attr('opacity', (d) => {
+        let isSameGender = (d.Gender === gender  || gender === 'A');
+        let isSameProvince = (id == 0 || provinces[id] === d.Province);
+
+        if (!isSameGender || !isSameProvince) return 0.3;
+        return 1;
+    });
+
+    console.log(gender);
+}
+
+// function handleProvinceChange() {
+//     let id = d3.select("#FloorPlan-ProvinceList").property('value');
+//
+//     d3.selectAll('rect')
+//     .attr('opacity', (d) => {
+//         if(provinces[id] !== d.Province) return 0.3;
+//     })
+// }
