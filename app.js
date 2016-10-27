@@ -115,35 +115,39 @@ function renderMps(data, block, index, side) {
 
     // Group by seating block
     let opp = d3.select(`#${side}`)
-    .append('g')
-    .attr('width', 1024)
-    .attr('height', 300)
-    .attr('transform', (d) => {
-        return `translate (${blockOffset}, 0)`;
-    });
+        .append('g')
+        .attr('width', 1024)
+        .attr('height', 300)
+        .attr('transform', (d) => {
+            return `translate (${blockOffset}, 0)`;
+        });
 
     // Assign block seats
     opp.selectAll('rect')
-    .data(data)
-    .enter()
-    .append('rect')
-    .attr('height', height)
-    .attr('width', width)
-    .attr('fill', (d) => {
-        return colours[d['Political Affiliation']];
-    })
-    .attr('x', (d) => {
+        .data(data)
+        .enter()
+        .append('rect')
+        .attr('height', height)
+        .attr('width', width)
+        .attr('fill', (d) => {
+            return colours[d['Political Affiliation']];
+        })
+        .attr('x', getMpX)
+        .attr('y', getMpY)
+        .on('click', (d) => {
+            // Show MP pic
+        })
+
+    function getMpX(d) {
         let xOffset = width + 1;
         let xBlockOffset = d.Column - blockStart; // Column - blockStart is offset within block
         return xBlockOffset * xOffset;
-    })
-    .attr('y', (d) => {
+    }
+
+    function getMpY(d) {
         let yOffset = height + 1;
         return side == 'opposition' ? d.Row * yOffset: (d.Row - 7) * yOffset // Normalize gov mp rows
-    }).
-    on('click', (d) => {
-        console.log(d)
-    })
+    }
 }
 
 function handleOptionsChange() {
@@ -158,15 +162,4 @@ function handleOptionsChange() {
         if (!isSameGender || !isSameProvince) return 0.3;
         return 1;
     });
-
-    console.log(gender);
 }
-
-// function handleProvinceChange() {
-//     let id = d3.select("#FloorPlan-ProvinceList").property('value');
-//
-//     d3.selectAll('rect')
-//     .attr('opacity', (d) => {
-//         if(provinces[id] !== d.Province) return 0.3;
-//     })
-// }
