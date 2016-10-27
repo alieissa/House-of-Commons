@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="hoc.css" media="screen" title="House of Commons Seating Plan">
     <style media="screen">
         #speaker{
             height: 130px
@@ -10,7 +11,48 @@
     </style>
   </head>
   <body>
+      <h1 class="site-title"><span>House of Commons Seating Plan </span></h1>
+        <div id="RefinersBar">
+          <div class="FloorPlan-Refiner">
+              <select id="FloorPlan-ProvinceList" class="FloorPlan-RefinerValues" onchange="handleOptionsChange()">
+                  <option value="0">All Provinces and Territories</option>
+                  <option value="" id="Province_" code=""></option>
+                  <option value="1" id="Province_1" code="AB">Alberta</option>
+                  <option value="2" id="Province_2" code="BC">British Columbia</option>
+                  <option value="3" id="Province_3" code="MB">Manitoba</option>
+                  <option value="4" id="Province_4" code="NB">New Brunswick</option>
+                  <option value="5" id="Province_5" code="NL">Newfoundland and Labrador</option>
+                  <option value="6" id="Province_6" code="NS">Nova Scotia</option>
+                  <option value="7" id="Province_7" code="NT">Northwest Territories</option>
+                  <option value="8" id="Province_8" code="NU">Nunavut</option>
+                  <option value="9" id="Province_9" code="ON">Ontario</option>
+                  <option value="10" id="Province_10" code="PE">Prince Edward Island</option>
+                  <option value="11" id="Province_11" code="QC">Quebec</option>
+                  <option value="12" id="Province_12" code="SK">Saskatchewan</option>
+                  <option value="13" id="Province_13" code="YT">Yukon</option>
+              </select>
+          </div>
+          <div class="FloorPlan-Refiner">
+              <select id="FloorPlan-GenderList" class="FloorPlan-RefinerValues" onchange='handleOptionsChange()'>
+                  <option value="A">Both Genders</option>
+                  <option value="F">Female</option>
+                  <option value="M">Male</option>
+              </select>
+          </div>
+          <div id="FloorPlan-ClearRefiners" class="hidden"></div>
+            <div id="FloorPlan-FindMP">
+                <div id="FloorPlan-TextboxContainer">
+                    <input class="disable-clear-button" type="text" autocorrect="off" autocapitalize="off" data-role="none" placeholder="Name, Postal Code, Constituency" id="FloorPlan-FindMPInput">
+                    <div id="FloorPlan-ClearFindMP" class="hidden"></div>
+                </div>
+                <input type="button" title="Find a current Member of Parliament by name, postal code or constituency." id="FloorPlan-FindMPButton" value="Find MP">
+            </div>
+        </div>
+          <div id="FloorPlanCard-FilterTitle" class="FloorPlanCard-FilterTitle-LeftAligned">
+              334 Members currently have seats in the House of Commons (88 Females, 246 Males)
+          </div>
     <div id="container">
+
         <svg id="opposition" width="1035" height="170">
 
         </svg>
