@@ -32,25 +32,21 @@ const colours = {
     'Independent': '#606860'
 };
 
-/*///////////////////////////////////////////////////////
-//  [a,b,c] = [blockStart, blockEnd, blockOffset]
-// Algorithm for offset apparent. But keep hardoced vals
-//////////////////////////////////////////////////////////*/
-
+//  [a,b,] = [blockStart, blockEnd]
 const seatingBlocks = [
-    [0, 6, 0],
-    [8, 12, 150],
-    [14, 18, 260],
-    [20, 24, 370],
-    [26, 30, 480],
-    [32, 36, 590],
-    [38, 42, 700],
-    [44, 45, 810],
-    [47, 47, 860]
+    [0, 6],
+    [8, 12],
+    [14, 18],
+    [20, 24],
+    [26, 30],
+    [32, 36],
+    [38, 42],
+    [44, 45],
+    [47, 47]
 ];
 
-
 seatingBlocks.forEach((block, index, self) => {
+
     let oppMps = getMps(0, 4, ...block);
     let govMps = getMps(7, 11, ...block);
 
@@ -108,6 +104,7 @@ function getMps(rowStart, rowEnd, columnStart, columnEnd) {
 //////////////////////////////////////////////////////////////////////////////////////////////*/
 
 function renderMps(data, block, index, side) {
+
     let padding = 10;
     let blockStart = block[0];
     let blockEnd = block[1];
