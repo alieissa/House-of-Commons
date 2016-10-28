@@ -1,11 +1,11 @@
 {
   "name": "house-of-commons",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "A re-production of the House of Commons seating plan in the form of a SPA using mainly d3.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "forever server.js",
+    "dev": "nodemon -x 'npm run gulp'",
+    "gulp": "gulp lint && node server.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,13 @@
   },
   "homepage": "https://github.com/alieissa/House-of-Commons#readme",
   "dependencies": {
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "forever": "^0.15.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.2",
+    "jshint": "^2.9.4",
+    "jshint-stylish": "^2.2.1"
   }
 }
