@@ -1,7 +1,8 @@
+'use strict';
 
 // Database only contains publicyl available data, so read permissions O.K.
 const firebaseApp = firebase.initializeApp({ databaseURL: "https://houseofcommons-d40a9.firebaseio.com"});
-const mpsRef = firebaseApp.database().ref('/MembersOfParliament')
+const mpsRef = firebaseApp.database().ref('/MembersOfParliament');
 
 const height = 31;
 const width =  23;
@@ -52,7 +53,7 @@ const seatingBlocks = [
     [47, 47]
 ];
 
-seatingBlocks.forEach((block, index, self) => {
+seatingBlocks.forEach((block, index) => {
 
     let oppMps = getMps(0, 4, ...block);
     let govMps = getMps(7, 11, ...block);
@@ -122,7 +123,7 @@ function renderMps(data, block, index, side) {
         .append('g')
         .attr('width', 1024)
         .attr('height', 300)
-        .attr('transform', (d) => {
+        .attr('transform', () => {
             return `translate (${blockOffset}, 0)`;
         });
 
@@ -140,12 +141,11 @@ function renderMps(data, block, index, side) {
         .attr('y', getMpY)
         .attr('status', 'dormant')
         .on('mouseover', renderMPCard)
-        .on('mouseout', function(d) {
+        .on('mouseout', () => {
             $("#FloorPlanCard-Horizontal").css("visibility", "hidden");
-            // d3.select(this).attr('fill', colours[d['Political Affiliation']]);
         })
-        .on('click', handleMpClick)
-
+        .on('click', handleMpClick);
+    //
     function handleMpClick(d) {
 
         let target = d3.select(this);
@@ -169,20 +169,24 @@ function renderMps(data, block, index, side) {
 
     function getMpY(d) {
         let yOffset = height + 1;
-        return side == 'opposition' ? d.Row * yOffset: (d.Row - 7) * yOffset // Normalize gov mp rows
+        return side === 'opposition' ? d.Row * yOffset: (d.Row - 7) * yOffset; // Normalize gov mp rows
     }
 
     function renderMPCard(d) {
 
         let backgroundColour = colours[d['Political Affiliation']];
 
+        let imgName=`${d.Lname}${d.Fname}_${parties[d["Political Affiliation"]]}`;
+        imgName = imgName.replace(/[' \.-]/g, ''); // Take care of middle name letters and hyphenated last names
+
+        if (imgName === "GourdeJacques_CPC") {
+            imgName = "GourdeJaques_CPC"; // type in source data
+        }
+        if(imgName === "WattsDianneL_CPC") {
+            imgName = "WattsDianneLynn_CPC"; //Doesn't fit the pattern
+        }
+
         $("#FloorPlanCardPhoto").attr("src", () => {
-            let imgName=`${d.Lname}${d.Fname}_${parties[d["Political Affiliation"]]}`
-            imgName = imgName.replace(/[' \.-]/g, ''); // Take care of middle name letters and hyphenated last names
-
-            if (imgName === "GourdeJacques_CPC") imgName = "GourdeJaques_CPC" // type in source data
-            if(imgName === "WattsDianneL_CPC") imgName = "WattsDianneLynn_CPC"; //Doesn't fit the pattern
-
             return  `http://www.parl.gc.ca/Parliamentarians/Images/OfficialMPPhotos/42/${imgName}.jpg`;
         });
 
@@ -200,17 +204,23 @@ function renderMps(data, block, index, side) {
     }
 }
 
-function handleOptionsChange() {
+/* ////////////////////////////////////////////////////////////////////////////////////////////
+// This function (callback) highlight MPs that meet the users specification of gender
+// and/or province. MPs that don't specification are 'defocused'
+//////////////////////////////////////////////////////////////////////////////////////////////*/
 
-    let id = d3.select("#FloorPlan-ProvinceList").property('value');
-    let gender = d3.select('#FloorPlan-GenderList').property('value');
+$('.FloorPlan-RefinerValues').change(() => {
+
+    let provinceId = $("#FloorPlan-ProvinceList").val();
+    let gender = $('#FloorPlan-GenderList').val();
 
     d3.selectAll('rect')
     .attr('opacity', (d) => {
         let isSameGender = (d.Gender === gender  || gender === 'A');
-        let isSameProvince = (id == 0 || provinces[id] === d.Province);
+        let isSameProvince = (provinceId === "0" || provinces[provinceId] === d.Province);
 
-        if (!isSameGender || !isSameProvince) return 0.3;
-        return 1;
+        return (!isSameGender || !isSameProvince) ? 0.3 : 1;
     });
-}
+
+    return;
+});
