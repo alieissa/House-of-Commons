@@ -22,7 +22,14 @@ const provinces = [
     "Saskatchewan",
     "Yukon"
 ];
-
+const parties = {
+    'Conservative': 'CPC',
+    'Liberal':'Lib',
+    'Bloc Québécois': 'BQ',
+    'Green Party': 'GP',
+    'NDP': 'NDP',
+    'Independent': 'IND'
+};
 const colours = {
     'Conservative': '#002395',
     'NDP': '#FF5800',
@@ -131,9 +138,28 @@ function renderMps(data, block, index, side) {
         })
         .attr('x', getMpX)
         .attr('y', getMpY)
-        .on('click', (d) => {
-            // Show MP pic
+        .attr('status', 'dormant')
+        .on('mouseover', renderMPCard)
+        .on('mouseout', function(d) {
+            $("#FloorPlanCard-Horizontal").css("visibility", "hidden");
+            // d3.select(this).attr('fill', colours[d['Political Affiliation']]);
         })
+        .on('click', handleMpClick)
+
+    function handleMpClick(d) {
+
+        let target = d3.select(this);
+        let status = target.attr('status');
+
+        if(status === 'active') {
+            $("#FloorPlanCard-Horizontal").css("visibility", "hidden");
+            target.attr('status', 'dormant');
+            return ;
+        }
+
+        renderMPCard(d);
+        return;
+    }
 
     function getMpX(d) {
         let xOffset = width + 1;
@@ -145,11 +171,39 @@ function renderMps(data, block, index, side) {
         let yOffset = height + 1;
         return side == 'opposition' ? d.Row * yOffset: (d.Row - 7) * yOffset // Normalize gov mp rows
     }
+
+    function renderMPCard(d) {
+
+        let backgroundColour = colours[d['Political Affiliation']];
+
+        $("#FloorPlanCardPhoto").attr("src", () => {
+            let imgName=`${d.Lname}${d.Fname}_${parties[d["Political Affiliation"]]}`
+            imgName = imgName.replace(/[' \.-]/g, ''); // Take care of middle name letters and hyphenated last names
+
+            if (imgName === "GourdeJacques_CPC") imgName = "GourdeJaques_CPC" // type in source data
+            if(imgName === "WattsDianneL_CPC") imgName = "WattsDianneLynn_CPC"; //Doesn't fit the pattern
+
+            return  `http://www.parl.gc.ca/Parliamentarians/Images/OfficialMPPhotos/42/${imgName}.jpg`;
+        });
+
+        $("#PersonName").text(() => {
+            let title = d['Honorific Title'];
+            return `${title} ${d.Fname} ${d.Lname}`;
+        });
+        $("#CaucusName").text(d['Political Affiliation']);
+        $("#ConstituencyName").text(d.Constituency);
+        $("#ProvinceName").text(d.Province);
+        $("#CaucusColour").css("background-color", backgroundColour);
+        $("#FloorPlanCard-Horizontal").css("visibility", "visible");
+
+        return;
+    }
 }
 
 function handleOptionsChange() {
-    let gender = d3.select('#FloorPlan-GenderList').property('value');
+
     let id = d3.select("#FloorPlan-ProvinceList").property('value');
+    let gender = d3.select('#FloorPlan-GenderList').property('value');
 
     d3.selectAll('rect')
     .attr('opacity', (d) => {
