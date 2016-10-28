@@ -22,6 +22,7 @@ def get_mp_coordinates():
             mp['row'] = rindex
             mp['column'] = cindex
             try:
+                print cell.attrs
                 name_array = cell.attrs['title'].split(" ")
 
                 if(name_array[0] == "Right"): # Right Hon. Justin Trudea
@@ -78,5 +79,5 @@ def save_non_mps(file, non_mps):
     nmp_file.close()
 
 mps, non_mps = get_mp_coordinates()
-save_mps('../mps.csv', mps)
+save_mps('../mps.temp.csv', mps)
 save_non_mps('../non_mps.csv', non_mps)
