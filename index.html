@@ -3,10 +3,30 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="hoc.css" media="screen" title="House of Commons Seating Plan">
+    <link rel="stylesheet" href="/assets/css/hoc.css" media="screen" title="House of Commons Seating Plan">
     <style media="screen">
-        #speaker{
-            height: 130px
+        #speaker-container{
+            height: 126px;
+            width: 1020px
+
+        }
+        .speaker {
+
+            background-repeat: no-repeat;
+        }
+        .speaker.left {
+            background-image: url('/assets/images/floorplan-speakerrow.png');
+            width: 270px;
+            height: inherit;
+            float: left
+        }
+        .speaker.right {
+            height: inherit;
+            background-repeat: no-repeat;
+            float: right;
+            background-image: url('/assets/images/floorplan-speakerrow-rightside.png');
+            background-position: right;
+            width: 270px;
         }
     </style>
   </head>
@@ -53,17 +73,32 @@
           </div>
     <div id="container">
 
-        <svg id="opposition" width="1035" height="170">
+        <svg id="opposition" width="1035" height="160">
 
         </svg>
-        <div id="speaker">
+        <div id="speaker-container">
+            <div class="speaker left"></div>
+            <div id="FloorPlanCard-Horizontal" style="visibility: hidden">
+                <a id="FloorPlanCard-Link" href="/Parliamentarians/en/members/Randall-Garrison(71995)" title="Randall Garrison - Click to open the Member of Parliament profile">
+                    <img src="http://www.parl.gc.ca/Parliamentarians/Images/OfficialMPPhotos/42/DiotteKerry_CPC.jpg" id="FloorPlanCardPhoto">
+                    <div id="FloorPlanCard-Horizontal-Details">
+                        <div id="PersonName">Randall Garrison</div>
+                        <div id="CaucusName">NDP</div>
+                        <div id="CaucusColour" class="FloorPlan-Caucus-Banner" style="background-color:#FF5800"></div>
+                        <div id="ConstituencyName">Esquimalt—Saanich—Sooke</div>
+                        <div id="ProvinceName">British Columbia</div>
+                    </div>
+                </a>
+            </div>
 
+            <div class="speaker right"></div>
         </div>
-        <svg id="government" width="1035" height="170">
+        <svg id="government" width="1035" height="160">
 
         </svg>
     </div>
     <script src="lib/firebase/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="lib/d3/d3.min.js"></script>
     <script src="app.js">  </script>
   </body>
