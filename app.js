@@ -144,9 +144,10 @@ function renderMps(data, block, index, side) {
         .on('mouseout', () => {
             $("#FloorPlanCard-Horizontal").css("visibility", "hidden");
         })
-        .on('click', handleMpClick);
-    //
-    function handleMpClick(d) {
+        .on('click', handleRectClick);
+
+
+    function handleRectClick(d) {
 
         let target = d3.select(this);
         let status = target.attr('status');
@@ -174,16 +175,26 @@ function renderMps(data, block, index, side) {
 
     function renderMPCard(d) {
 
+        let imgName = "";
         let backgroundColour = colours[d['Political Affiliation']];
 
-        let imgName=`${d.Lname}${d.Fname}_${parties[d["Political Affiliation"]]}`;
-        imgName = imgName.replace(/[' \.-]/g, ''); // Take care of middle name letters and hyphenated last names
+        // Tootoo, Gourde and Goldsmith-Jones img url don't have typos
+        switch(d.Lname){
+            case "Tootoo":
+                imgName = "TootooHunter_Lib";
+                break;
 
-        if (imgName === "GourdeJacques_CPC") {
-            imgName = "GourdeJaques_CPC"; // type in source data
-        }
-        if(imgName === "WattsDianneL_CPC") {
-            imgName = "WattsDianneLynn_CPC"; //Doesn't fit the pattern
+            case "Gourde":
+                imgName = "GourdeJaques_CPC"; // type in source data
+                break;
+
+            case "Goldsmith-Jones":
+                imgName = "WattsDianneLynn_CPC";
+                break;
+
+            default:
+                imgName = `${d.Lname}${d.Fname}_${parties[d["Political Affiliation"]]}`;
+                imgName = imgName.replace(/[' \.-]/g, ''); // Take care of middle name letters and hyphenated last names
         }
 
         $("#FloorPlanCardPhoto").attr("src", () => {
