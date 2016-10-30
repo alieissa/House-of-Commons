@@ -5,7 +5,7 @@
   "scripts": {
     "start": "forever server.js",
     "dev": "nodemon -x 'npm run gulp'",
-    "gulp": "gulp lint && node server.js",
+    "gulp": "gulp && node server.js",
     "postinstall": "./node_modules/bower/bin/bower install"
   },
   "repository": {
@@ -24,9 +24,14 @@
     "forever": "^0.15.2"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.18.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.1",
     "gulp": "^3.9.1",
     "gulp-jshint": "^2.0.2",
     "jshint": "^2.9.4",
-    "jshint-stylish": "^2.2.1"
+    "jshint-stylish": "^2.2.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   }
 }
