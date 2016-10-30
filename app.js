@@ -1,9 +1,6 @@
 'use strict';
 
 // Database only contains publicyl available data, so read permissions O.K.
-const firebaseApp = firebase.initializeApp({ databaseURL: "https://houseofcommons-d40a9.firebaseio.com"});
-const mpsRef = firebaseApp.database().ref('/MembersOfParliament');
-
 const height = 31;
 const width =  23;
 
@@ -53,57 +50,27 @@ const seatingBlocks = [
     [47, 47]
 ];
 
+
+import {House} from './House.js'
+const house = new House("https://houseofcommons-d40a9.firebaseio.com", '/MembersOfParliament')
+
 seatingBlocks.forEach((block, index) => {
 
-    let oppMps = getMps(0, 4, ...block);
-    let govMps = getMps(7, 11, ...block);
+    let oppMps = house.getMps(0, 4, ...block);
+    let govMps = house.getMps(7, 11, ...block);
 
     oppMps.then((mps) => {
+
+        mps.forEach((mp) => house.getImage(mp)); // prefetch mp images
         renderMps(mps, block, index, 'opposition');
     });
 
     govMps.then((mps) => {
+        mps.forEach((mp) => house.getImage(mp)); // prefetch mp images
         renderMps(mps, block, index, 'government');
     });
 });
 
-/* ////////////////////////////////////////////////////////////////////////////////////////////
-// Retrieve MPs between row 'start' , row 'end' and column 'cloumnStart' and 'columnEnd'
-// Firebase doesn't have much querying capabilites so function queries firebase by row
-// then locally extracts data that meets columns condition
-//////////////////////////////////////////////////////////////////////////////////////////////*/
-
-function getMps(rowStart, rowEnd, columnStart, columnEnd) {
-
-    let mpsArray = [];
-    let _rowStart = rowStart < 10 ? `0${rowStart}` : rowStart.toString();
-    let _rowEnd = rowEnd < 10 ? `0${rowEnd}` : rowEnd.toString();
-
-    let blockRef = mpsRef
-    .orderByChild('Row')
-    .startAt(_rowStart)
-    .endAt(_rowEnd);
-
-    return blockRef
-    .once('value')
-    .then(getBlockMps);
-
-    function getBlockMps(snapshot) {
-        let mpsCollection = snapshot.val();
-
-        // Convert huge json object to array
-        for(let fullname in mpsCollection) {
-            let column = mpsCollection[fullname].Column;
-
-            // convert columns from leading zeroed num string to int e.g '06' to 6
-            column = column[0] === "0" ? parseInt(column[1]): parseInt(column);
-            if(column >= columnStart && column <= columnEnd) {
-                mpsArray.push(mpsCollection[fullname]);
-            }
-        }
-        return mpsArray;
-    }
-}
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////
 // Draws all the MPS according to their coordinates and party Affiliation
@@ -118,8 +85,9 @@ function renderMps(data, block, index, side) {
     let blockEnd = block[1];
     let blockOffset = (blockStart * width) - (index * padding);
 
+
     // Group by seating block
-    let opp = d3.select(`#${side}`)
+    let _block = d3.select(`#${side}`)
         .append('g')
         .attr('width', 1024)
         .attr('height', 300)
@@ -128,37 +96,43 @@ function renderMps(data, block, index, side) {
         });
 
     // Assign block seats
-    opp.selectAll('rect')
+    _block.selectAll('rect')
         .data(data)
         .enter()
         .append('rect')
-        .attr('height', height)
-        .attr('width', width)
-        .attr('fill', (d) => {
-            return colours[d['Political Affiliation']];
-        })
         .attr('x', getMpX)
         .attr('y', getMpY)
+        .attr('width', width)
+        .attr('height', height)
         .attr('status', 'dormant')
-        .on('mouseover', renderMPCard)
-        .on('mouseout', () => {
-            $("#FloorPlanCard-Horizontal").css("visibility", "hidden");
+        .attr('fill', (d) => colours[d['Political Affiliation']])
+        .on('click', handleRectClick)
+        .on('mouseover', function(d) {
+            let visibility = $("#FloorPlanCard-Horizontal").css("visibility");
+            if(visibility === "hidden") renderMPCard(d);
         })
-        .on('click', handleRectClick);
-
+        .on('mouseout', (d) => {
+            let status = $("#FloorPlanCard-Horizontal").attr("class");
+            if(status === "free") $("#FloorPlanCard-Horizontal").css("visibility", "hidden");
+        });
 
     function handleRectClick(d) {
 
-        let target = d3.select(this);
-        let status = target.attr('status');
+        let cardStatus = $("#FloorPlanCard-Horizontal").attr('class');
+        let mpStatus = d3.select(this).attr("status");
 
-        if(status === 'active') {
-            $("#FloorPlanCard-Horizontal").css("visibility", "hidden");
-            target.attr('status', 'dormant');
-            return ;
+        if(mpStatus === "dormant") {
+            d3.select(this).attr('status', 'active');
+            $("#FloorPlanCard-Horizontal").attr("class", "locked");
+            $("#FloorPlanCard-Horizontal").css("visibility", "visible");
         }
-
+        else {
+            d3.select(this).attr('status', 'dormant');
+            $("#FloorPlanCard-Horizontal").attr("class", "free");
+            $("#FloorPlanCard-Horizontal").css("visibility", "hidden");
+        }
         renderMPCard(d);
+
         return;
     }
 
@@ -175,36 +149,12 @@ function renderMps(data, block, index, side) {
 
     function renderMPCard(d) {
 
-        let imgName = "";
+        let title = d['Honorific Title'];
+        let personName =  `${title} ${d.Fname} ${d.Lname}`;
         let backgroundColour = colours[d['Political Affiliation']];
 
-        // Tootoo, Gourde and Goldsmith-Jones img url don't have typos
-        switch(d.Lname){
-            case "Tootoo":
-                imgName = "TootooHunter_Lib";
-                break;
-
-            case "Gourde":
-                imgName = "GourdeJaques_CPC"; // type in source data
-                break;
-
-            case "Goldsmith-Jones":
-                imgName = "WattsDianneLynn_CPC";
-                break;
-
-            default:
-                imgName = `${d.Lname}${d.Fname}_${parties[d["Political Affiliation"]]}`;
-                imgName = imgName.replace(/[' \.-]/g, ''); // Take care of middle name letters and hyphenated last names
-        }
-
-        $("#FloorPlanCardPhoto").attr("src", () => {
-            return  `http://www.parl.gc.ca/Parliamentarians/Images/OfficialMPPhotos/42/${imgName}.jpg`;
-        });
-
-        $("#PersonName").text(() => {
-            let title = d['Honorific Title'];
-            return `${title} ${d.Fname} ${d.Lname}`;
-        });
+        $("#FloorPlanCardPhoto").attr("src", d.ImgUrl);
+        $("#PersonName").text(personName);
         $("#CaucusName").text(d['Political Affiliation']);
         $("#ConstituencyName").text(d.Constituency);
         $("#ProvinceName").text(d.Province);
@@ -217,7 +167,7 @@ function renderMps(data, block, index, side) {
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////
 // This function (callback) highlight MPs that meet the users specification of gender
-// and/or province. MPs that don't specification are 'defocused'
+// and/or province. MPs that don't are 'defocused'
 //////////////////////////////////////////////////////////////////////////////////////////////*/
 
 $('.FloorPlan-RefinerValues').change(() => {
