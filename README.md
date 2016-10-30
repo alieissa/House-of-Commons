@@ -1,5 +1,5 @@
 # House of Commons
-This app is a re-reproduction of the House of Commons seating app, found here. Although the functionality of the two is the same the code base is vastly different.
+This app, found [here](http://house-of-commons.herokuapp.com), is a re-reproduction of the House of Commons seating app, found [here](http://www.parl.gc.ca/parliamentarians/en/floorplan). Although the functionality of the two is the same the code base is vastly different.
 
 ## Data
 It was easy enough to find a csv containing the names of the MPs and their details, but I had to scrap the House of Commons website to collect the url of MPs' image and had to do data some manipulations to get data in the format that was required.
