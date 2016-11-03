@@ -5,8 +5,7 @@
   "scripts": {
     "start": "forever server.js",
     "dev": "nodemon -x 'npm run gulp'",
-    "gulp": "gulp && node server.js",
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "gulp": "gulp && node server.js"
   },
   "repository": {
     "type": "git",
