@@ -85,13 +85,12 @@ var House = exports.House = function () {
             for (var name in result) {
                 var mp = result[name];
 
+                // convert columns from leading zeroed num string to int e.g '06' to 6
                 if (mp.Column[0] === "0") {
                     mp.Column = mp.Column[1];
                 }
 
                 mp.Column = parseInt(mp.Column);
-                // convert columns from leading zeroed num string to int e.g '06' to 6
-                //column = column[0] === "0" ? parseInt(column[1]): parseInt(column);
                 if (mp.Column >= columnStart && mp.Column <= columnEnd) {
                     mps.push(mp);
                 }
