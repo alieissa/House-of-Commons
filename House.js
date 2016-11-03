@@ -28,7 +28,7 @@ export class House {
     //////////////////////////////////////////////////////////////////////////////////////////////*/
 
     getImage(mp) {
-        console.log(mp)
+        
         let img = new Image();
         img.onerror = (error) => {
             console.log(`Unable to get image for ${mp.Fname} ${mp.Lname}`);

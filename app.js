@@ -108,10 +108,12 @@ function renderMps(data, block, index, side) {
         .attr('fill', (d) => colours[d['Political Affiliation']])
         .on('click', handleRectClick)
         .on('mouseover', function(d) {
+
             let visibility = $('#FloorPlanCard-Horizontal').css('visibility');
             if(visibility === 'hidden') renderMPCard(d);
         })
         .on('mouseout', (d) => {
+            
             let status = $('#FloorPlanCard-Horizontal').attr('class');
             if(status === 'free') $('#FloorPlanCard-Horizontal').css('visibility', 'hidden');
         });
@@ -137,12 +139,14 @@ function renderMps(data, block, index, side) {
     }
 
     function getMpX(d) {
+
         let xOffset = width + 1;
         let xBlockOffset = d.Column - blockStart; // Column - blockStart is offset within block
         return xBlockOffset * xOffset;
     }
 
     function getMpY(d) {
+
         let yOffset = height + 1;
         return side === 'opposition' ? d.Row * yOffset: (d.Row - 7) * yOffset; // Normalize gov mp rows
     }
@@ -165,6 +169,36 @@ function renderMps(data, block, index, side) {
     }
 }
 
+$('#FloorPlan-FindMPButton').click(handleSearchClick)
+
+function handleSearchClick() {
+    let searchTerm = $('#FloorPlan-FindMPInput').val();
+
+    // Highlight MPs that match wholly or partially the search term
+    let mps = d3.selectAll('rect')
+        .attr('opacity', (d) => {
+            
+            let constNames = d.Constituency.split("—");
+
+            // if search term in beginnig of any of riding names, then inConst is true
+            let inConst = constNames.reduce((prev, curr, index) => {
+                return prev || constNames[index].indexOf(searchTerm) === 0;
+            }, false);
+
+            let inFname = d.Lname.indexOf(searchTerm) === 0;
+            let inLname = d.Fname.indexOf(searchTerm) === 0;
+            // let inConst = d.Constituency.indexOf(searchTerm) !== -1;
+            if(inFname || inLname || inConst) {
+                return 1;
+            } 
+            else {
+                return 0.3;
+            }
+        });
+
+    console.log(searchTerm);
+    console.log("Click Captured");
+}
 
 // Filter by province and/or gender
 $('.FloorPlan-RefinerValues').change(handleFilterChange);

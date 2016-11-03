@@ -40,7 +40,7 @@ var House = exports.House = function () {
     _createClass(House, [{
         key: 'getImage',
         value: function getImage(mp) {
-            console.log(mp);
+
             var img = new Image();
             img.onerror = function (error) {
                 console.log('Unable to get image for ' + mp.Fname + ' ' + mp.Lname);
@@ -181,9 +181,11 @@ function renderMps(data, block, index, side) {
     _block.selectAll('rect').data(data).enter().append('rect').attr('x', getMpX).attr('y', getMpY).attr('width', width).attr('height', height).attr('status', 'dormant').attr('fill', function (d) {
         return colours[d['Political Affiliation']];
     }).on('click', handleRectClick).on('mouseover', function (d) {
+
         var visibility = $('#FloorPlanCard-Horizontal').css('visibility');
         if (visibility === 'hidden') renderMPCard(d);
     }).on('mouseout', function (d) {
+
         var status = $('#FloorPlanCard-Horizontal').attr('class');
         if (status === 'free') $('#FloorPlanCard-Horizontal').css('visibility', 'hidden');
     });
@@ -208,12 +210,14 @@ function renderMps(data, block, index, side) {
     }
 
     function getMpX(d) {
+
         var xOffset = width + 1;
         var xBlockOffset = d.Column - blockStart; // Column - blockStart is offset within block
         return xBlockOffset * xOffset;
     }
 
     function getMpY(d) {
+
         var yOffset = height + 1;
         return side === 'opposition' ? d.Row * yOffset : (d.Row - 7) * yOffset; // Normalize gov mp rows
     }
@@ -234,6 +238,35 @@ function renderMps(data, block, index, side) {
 
         return;
     }
+}
+
+$('#FloorPlan-FindMPButton').click(handleSearchClick);
+
+function handleSearchClick() {
+    var searchTerm = $('#FloorPlan-FindMPInput').val();
+
+    // Highlight MPs that match wholly or partially the search term
+    var mps = d3.selectAll('rect').attr('opacity', function (d) {
+
+        var constNames = d.Constituency.split("—");
+
+        // if search term in beginnig of any of riding names, then inConst is true
+        var inConst = constNames.reduce(function (prev, curr, index) {
+            return prev || constNames[index].indexOf(searchTerm) === 0;
+        }, false);
+
+        var inFname = d.Lname.indexOf(searchTerm) === 0;
+        var inLname = d.Fname.indexOf(searchTerm) === 0;
+        // let inConst = d.Constituency.indexOf(searchTerm) !== -1;
+        if (inFname || inLname || inConst) {
+            return 1;
+        } else {
+            return 0.3;
+        }
+    });
+
+    console.log(searchTerm);
+    console.log("Click Captured");
 }
 
 // Filter by province and/or gender
