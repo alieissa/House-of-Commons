@@ -5,20 +5,20 @@ const height = 31;
 const width =  23;
 
 const provinces = [
-    "All Provinces and Territories",
-    "Alberta",
-    "British Columbia",
-    "Manitoba",
-    "New Brunswick",
-    "Newfoundland and Labrador",
-    "Nova Scotia",
-    "Northwest Territories",
-    "Nunavut",
-    "Ontario",
-    "Prince Edward Island",
-    "Quebec",
-    "Saskatchewan",
-    "Yukon"
+    'All Provinces and Territories',
+    'Alberta',
+    'British Columbia',
+    'Manitoba',
+    'New Brunswick',
+    'Newfoundland and Labrador',
+    'Nova Scotia',
+    'Northwest Territories',
+    'Nunavut',
+    'Ontario',
+    'Prince Edward Island',
+    'Quebec',
+    'Saskatchewan',
+    'Yukon'
 ];
 const parties = {
     'Conservative': 'CPC',
@@ -52,7 +52,7 @@ const seatingBlocks = [
 
 
 import {House} from './House.js'
-const house = new House("https://houseofcommons-d40a9.firebaseio.com", '/MembersOfParliament')
+const house = new House('https://houseofcommons-d40a9.firebaseio.com', '/MembersOfParliament')
 
 seatingBlocks.forEach((block, index) => {
 
@@ -108,28 +108,28 @@ function renderMps(data, block, index, side) {
         .attr('fill', (d) => colours[d['Political Affiliation']])
         .on('click', handleRectClick)
         .on('mouseover', function(d) {
-            let visibility = $("#FloorPlanCard-Horizontal").css("visibility");
-            if(visibility === "hidden") renderMPCard(d);
+            let visibility = $('#FloorPlanCard-Horizontal').css('visibility');
+            if(visibility === 'hidden') renderMPCard(d);
         })
         .on('mouseout', (d) => {
-            let status = $("#FloorPlanCard-Horizontal").attr("class");
-            if(status === "free") $("#FloorPlanCard-Horizontal").css("visibility", "hidden");
+            let status = $('#FloorPlanCard-Horizontal').attr('class');
+            if(status === 'free') $('#FloorPlanCard-Horizontal').css('visibility', 'hidden');
         });
 
     function handleRectClick(d) {
 
-        let cardStatus = $("#FloorPlanCard-Horizontal").attr('class');
-        let mpStatus = d3.select(this).attr("status");
+        let cardStatus = $('#FloorPlanCard-Horizontal').attr('class');
+        let mpStatus = d3.select(this).attr('status');
 
-        if(mpStatus === "dormant") {
+        if(mpStatus === 'dormant') {
             d3.select(this).attr('status', 'active');
-            $("#FloorPlanCard-Horizontal").attr("class", "locked");
-            $("#FloorPlanCard-Horizontal").css("visibility", "visible");
+            $('#FloorPlanCard-Horizontal').attr('class', 'locked');
+            $('#FloorPlanCard-Horizontal').css('visibility', 'visible');
         }
         else {
             d3.select(this).attr('status', 'dormant');
-            $("#FloorPlanCard-Horizontal").attr("class", "free");
-            $("#FloorPlanCard-Horizontal").css("visibility", "hidden");
+            $('#FloorPlanCard-Horizontal').attr('class', 'free');
+            $('#FloorPlanCard-Horizontal').css('visibility', 'hidden');
         }
         renderMPCard(d);
 
@@ -153,35 +153,43 @@ function renderMps(data, block, index, side) {
         let personName =  `${title} ${d.Fname} ${d.Lname}`;
         let backgroundColour = colours[d['Political Affiliation']];
 
-        $("#FloorPlanCardPhoto").attr("src", d.ImgUrl);
-        $("#PersonName").text(personName);
-        $("#CaucusName").text(d['Political Affiliation']);
-        $("#ConstituencyName").text(d.Constituency);
-        $("#ProvinceName").text(d.Province);
-        $("#CaucusColour").css("background-color", backgroundColour);
-        $("#FloorPlanCard-Horizontal").css("visibility", "visible");
+        $('#FloorPlanCardPhoto').attr('src', d.ImgUrl);
+        $('#PersonName').text(personName);
+        $('#CaucusName').text(d['Political Affiliation']);
+        $('#ConstituencyName').text(d.Constituency);
+        $('#ProvinceName').text(d.Province);
+        $('#CaucusColour').css('background-color', backgroundColour);
+        $('#FloorPlanCard-Horizontal').css('visibility', 'visible');
 
         return;
     }
 }
+
+
+// Filter by province and/or gender
+$('.FloorPlan-RefinerValues').change(handleFilterChange);
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////
 // This function (callback) highlight MPs that meet the users specification of gender
 // and/or province. MPs that don't are 'defocused'
 //////////////////////////////////////////////////////////////////////////////////////////////*/
 
-$('.FloorPlan-RefinerValues').change(() => {
+function handleFilterChange() {
 
-    let provinceId = $("#FloorPlan-ProvinceList").val();
+    let provinceId = $('#FloorPlan-ProvinceList').val();
     let gender = $('#FloorPlan-GenderList').val();
 
     d3.selectAll('rect')
     .attr('opacity', (d) => {
         let isSameGender = (d.Gender === gender  || gender === 'A');
-        let isSameProvince = (provinceId === "0" || provinces[provinceId] === d.Province);
+        let isSameProvince = (provinceId === '0' || provinces[provinceId] === d.Province);
 
         return (!isSameGender || !isSameProvince) ? 0.3 : 1;
     });
 
+    // Hide the MP card
+    $('#FloorPlanCard-Horizontal').attr('class', 'free');
+    $('#FloorPlanCard-Horizontal').css('visibility', 'hidden');
+
     return;
-});
+}

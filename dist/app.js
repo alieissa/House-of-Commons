@@ -108,14 +108,14 @@ var House = exports.House = function () {
 
 // Database only contains publicyl available data, so read permissions O.K.
 
-var _House = require("./House.js");
+var _House = require('./House.js');
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var height = 31;
 var width = 23;
 
-var provinces = ["All Provinces and Territories", "Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Nova Scotia", "Northwest Territories", "Nunavut", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan", "Yukon"];
+var provinces = ['All Provinces and Territories', 'Alberta', 'British Columbia', 'Manitoba', 'New Brunswick', 'Newfoundland and Labrador', 'Nova Scotia', 'Northwest Territories', 'Nunavut', 'Ontario', 'Prince Edward Island', 'Quebec', 'Saskatchewan', 'Yukon'];
 var parties = {
     'Conservative': 'CPC',
     'Liberal': 'Lib',
@@ -136,7 +136,7 @@ var colours = {
 //  [a,b,] = [blockStart, blockEnd]
 var seatingBlocks = [[0, 6], [8, 12], [14, 18], [20, 24], [26, 30], [32, 36], [38, 42], [44, 45], [47, 47]];
 
-var house = new _House.House("https://houseofcommons-d40a9.firebaseio.com", '/MembersOfParliament');
+var house = new _House.House('https://houseofcommons-d40a9.firebaseio.com', '/MembersOfParliament');
 
 seatingBlocks.forEach(function (block, index) {
 
@@ -173,34 +173,34 @@ function renderMps(data, block, index, side) {
     var blockOffset = blockStart * width - index * padding;
 
     // Group by seating block
-    var _block = d3.select("#" + side).append('g').attr('width', 1024).attr('height', 300).attr('transform', function () {
-        return "translate (" + blockOffset + ", 0)";
+    var _block = d3.select('#' + side).append('g').attr('width', 1024).attr('height', 300).attr('transform', function () {
+        return 'translate (' + blockOffset + ', 0)';
     });
 
     // Assign block seats
     _block.selectAll('rect').data(data).enter().append('rect').attr('x', getMpX).attr('y', getMpY).attr('width', width).attr('height', height).attr('status', 'dormant').attr('fill', function (d) {
         return colours[d['Political Affiliation']];
     }).on('click', handleRectClick).on('mouseover', function (d) {
-        var visibility = $("#FloorPlanCard-Horizontal").css("visibility");
-        if (visibility === "hidden") renderMPCard(d);
+        var visibility = $('#FloorPlanCard-Horizontal').css('visibility');
+        if (visibility === 'hidden') renderMPCard(d);
     }).on('mouseout', function (d) {
-        var status = $("#FloorPlanCard-Horizontal").attr("class");
-        if (status === "free") $("#FloorPlanCard-Horizontal").css("visibility", "hidden");
+        var status = $('#FloorPlanCard-Horizontal').attr('class');
+        if (status === 'free') $('#FloorPlanCard-Horizontal').css('visibility', 'hidden');
     });
 
     function handleRectClick(d) {
 
-        var cardStatus = $("#FloorPlanCard-Horizontal").attr('class');
-        var mpStatus = d3.select(this).attr("status");
+        var cardStatus = $('#FloorPlanCard-Horizontal').attr('class');
+        var mpStatus = d3.select(this).attr('status');
 
-        if (mpStatus === "dormant") {
+        if (mpStatus === 'dormant') {
             d3.select(this).attr('status', 'active');
-            $("#FloorPlanCard-Horizontal").attr("class", "locked");
-            $("#FloorPlanCard-Horizontal").css("visibility", "visible");
+            $('#FloorPlanCard-Horizontal').attr('class', 'locked');
+            $('#FloorPlanCard-Horizontal').css('visibility', 'visible');
         } else {
             d3.select(this).attr('status', 'dormant');
-            $("#FloorPlanCard-Horizontal").attr("class", "free");
-            $("#FloorPlanCard-Horizontal").css("visibility", "hidden");
+            $('#FloorPlanCard-Horizontal').attr('class', 'free');
+            $('#FloorPlanCard-Horizontal').css('visibility', 'hidden');
         }
         renderMPCard(d);
 
@@ -221,39 +221,46 @@ function renderMps(data, block, index, side) {
     function renderMPCard(d) {
 
         var title = d['Honorific Title'];
-        var personName = title + " " + d.Fname + " " + d.Lname;
+        var personName = title + ' ' + d.Fname + ' ' + d.Lname;
         var backgroundColour = colours[d['Political Affiliation']];
 
-        $("#FloorPlanCardPhoto").attr("src", d.ImgUrl);
-        $("#PersonName").text(personName);
-        $("#CaucusName").text(d['Political Affiliation']);
-        $("#ConstituencyName").text(d.Constituency);
-        $("#ProvinceName").text(d.Province);
-        $("#CaucusColour").css("background-color", backgroundColour);
-        $("#FloorPlanCard-Horizontal").css("visibility", "visible");
+        $('#FloorPlanCardPhoto').attr('src', d.ImgUrl);
+        $('#PersonName').text(personName);
+        $('#CaucusName').text(d['Political Affiliation']);
+        $('#ConstituencyName').text(d.Constituency);
+        $('#ProvinceName').text(d.Province);
+        $('#CaucusColour').css('background-color', backgroundColour);
+        $('#FloorPlanCard-Horizontal').css('visibility', 'visible');
 
         return;
     }
 }
+
+// Filter by province and/or gender
+$('.FloorPlan-RefinerValues').change(handleFilterChange);
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////
 // This function (callback) highlight MPs that meet the users specification of gender
 // and/or province. MPs that don't are 'defocused'
 //////////////////////////////////////////////////////////////////////////////////////////////*/
 
-$('.FloorPlan-RefinerValues').change(function () {
+function handleFilterChange() {
 
-    var provinceId = $("#FloorPlan-ProvinceList").val();
+    var provinceId = $('#FloorPlan-ProvinceList').val();
     var gender = $('#FloorPlan-GenderList').val();
 
     d3.selectAll('rect').attr('opacity', function (d) {
         var isSameGender = d.Gender === gender || gender === 'A';
-        var isSameProvince = provinceId === "0" || provinces[provinceId] === d.Province;
+        var isSameProvince = provinceId === '0' || provinces[provinceId] === d.Province;
 
         return !isSameGender || !isSameProvince ? 0.3 : 1;
     });
 
+    // Hide the MP card
+    $('#FloorPlanCard-Horizontal').attr('class', 'free');
+    $('#FloorPlanCard-Horizontal').css('visibility', 'hidden');
+
     return;
-});
+}
 
 },{"./House.js":1}]},{},[2]);
