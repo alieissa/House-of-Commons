@@ -54,6 +54,8 @@ var House = exports.House = function () {
 
             mp.ImgUrl = 'http://www.parl.gc.ca/Parliamentarians/Images/OfficialMPPhotos/42/' + mp.ImgName + '.jpg';
             img.src = mp.ImgUrl;
+
+            return;
         }
 
         /* ////////////////////////////////////////////////////////////////////////////////////////////
@@ -97,6 +99,34 @@ var House = exports.House = function () {
             }
             return mps;
         }
+    }, {
+        key: 'separateMPs',
+        value: function separateMPs(searchTerm) {
+
+            var setInclusion = function setInclusion(d) {
+
+                var constNames = d.Constituency.split("—");
+
+                // if search term in beginnig of any of riding names, then inConst is true
+                var inConst = constNames.reduce(function (prev, curr, index) {
+                    return prev || constNames[index].indexOf(searchTerm) === 0;
+                }, false);
+
+                var inFname = d.Lname.indexOf(searchTerm) === 0;
+                var inLname = d.Fname.indexOf(searchTerm) === 0;
+
+                return inFname || inLname || inConst ? 'included' : 'excluded';
+            };
+
+            d3.selectAll('rect').attr('inclusion', setInclusion);
+
+            var separatedMPs = {
+                includedMPs: d3.selectAll('[inclusion=included]'),
+                excludedMPs: d3.selectAll('[inclusion=excluded]')
+            };
+
+            return separatedMPs;
+        }
     }]);
 
     return House;
@@ -105,24 +135,15 @@ var House = exports.House = function () {
 },{}],2:[function(require,module,exports){
 'use strict';
 
-// Database only contains publicyl available data, so read permissions O.K.
-
 var _House = require('./House.js');
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
+// Database only contains publicyl available data, so read permissions O.K.
 var height = 31;
 var width = 23;
 
 var provinces = ['All Provinces and Territories', 'Alberta', 'British Columbia', 'Manitoba', 'New Brunswick', 'Newfoundland and Labrador', 'Nova Scotia', 'Northwest Territories', 'Nunavut', 'Ontario', 'Prince Edward Island', 'Quebec', 'Saskatchewan', 'Yukon'];
-var parties = {
-    'Conservative': 'CPC',
-    'Liberal': 'Lib',
-    'Bloc Québécois': 'BQ',
-    'Green Party': 'GP',
-    'NDP': 'NDP',
-    'Independent': 'IND'
-};
 var colours = {
     'Conservative': '#002395',
     'NDP': '#FF5800',
@@ -137,6 +158,195 @@ var seatingBlocks = [[0, 6], [8, 12], [14, 18], [20, 24], [26, 30], [32, 36], [3
 
 var house = new _House.House('https://houseofcommons-d40a9.firebaseio.com', '/MembersOfParliament');
 
+function clearMPCard() {
+
+    $('#FloorPlanCard-Horizontal').attr('class', 'free');
+    $('#FloorPlanCard-Horizontal').css('visibility', 'hidden');
+}
+
+function clearRefiners() {
+
+    $('#FloorPlan-ProvinceList').val(0); // Set to All provinces
+    $('#FloorPlan-GenderList').val('A'); // Set to Both Geders
+}
+
+function clearSearchBox() {
+
+    $('#FloorPlan-ClearFindMP').addClass('hidden');
+    $('#FloorPlan-FindMPInput').val('');
+}
+
+function handleClearFindMPClick() {
+
+    if ($('#FloorPlan-FindMP').attr('status') === 'active') {
+        $('#FloorPlan-FindMP').attr('status', 'dormant');
+        d3.selectAll('rect').attr('opacity', 1);
+    }
+
+    clearSearchBox();
+    return;
+    // clearRefiners();
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////
+// This function (callback) highlight MPs that meet the users specification of gender
+// and/or province. MPs that don't are 'defocused'
+//////////////////////////////////////////////////////////////////////////////////////////////*/
+
+function handleFilterChange() {
+
+    var provinceId = $('#FloorPlan-ProvinceList').val();
+    var gender = $('#FloorPlan-GenderList').val();
+    var setOpacity = function setOpacity(d) {
+
+        var isSameGender = d.Gender === gender || gender === 'A';
+        var isSameProvince = provinceId === '0' || provinces[provinceId] === d.Province;
+
+        return !isSameGender || !isSameProvince ? 0.3 : 1;
+    };
+
+    d3.selectAll('rect').attr('opacity', setOpacity);
+
+    clearMPCard();
+    clearSearchBox();
+
+    return;
+}
+
+function handleFindMPButtonClick() {
+
+    // If search filter is empty do nothing
+    if ($('#FloorPlan-FindMPInput').val() === '') {
+        return;
+    }
+
+    $('#FloorPlan-ClearFindMP').removeClass();
+    clearMPCard();
+    clearRefiners();
+
+    var searchTerm = $('#FloorPlan-FindMPInput').val();
+    var mps = house.separateMPs(searchTerm);
+
+    if (mps.includedMPs.size() > 0) {
+        mps.excludedMPs.attr('opacity', 0.3); //defocus
+        mps.includedMPs.attr('opacity', 1);
+        $('#FloorPlan-FindMP').attr('status', 'active');
+    } else {
+        // Show everyone, then hide clear button
+        d3.selectAll('rect').attr('opacity', 1);
+        $('#FloorPlan-ClearFindMP').addClass('hidden');
+        $('#FloorPlan-FindMP').attr('status', 'dormant');
+    }
+
+    return;
+}
+
+function handleRectClick(mp) {
+
+    var mpStatus = d3.select(this).attr('status');
+
+    if (mpStatus === 'dormant') {
+        d3.select(this).attr('status', 'active');
+        $('#FloorPlanCard-Horizontal').attr('class', 'locked');
+        $('#FloorPlanCard-Horizontal').css('visibility', 'visible');
+    } else {
+        d3.select(this).attr('status', 'dormant');
+        $('#FloorPlanCard-Horizontal').attr('class', 'free');
+        $('#FloorPlanCard-Horizontal').css('visibility', 'hidden');
+    }
+
+    renderMPCard(mp);
+    return;
+}
+
+function handleRectMouseout() {
+
+    var status = $('#FloorPlanCard-Horizontal').attr('class');
+    if (status === 'free') {
+        $('#FloorPlanCard-Horizontal').css('visibility', 'hidden');
+    }
+
+    return;
+}
+
+function handleRectMouseover(mp) {
+
+    var visibility = $('#FloorPlanCard-Horizontal').css('visibility');
+    if (visibility === 'hidden') {
+        renderMPCard(mp);
+    }
+
+    return;
+}
+
+function handleTBCKeypress() {
+
+    if ($('#FloorPlan-ClearFindMP').hasClass('hidden')) {
+        $('#FloorPlan-ClearFindMP').removeClass('hidden');
+    }
+    return;
+}
+
+function renderMPCard(mp) {
+
+    var title = mp['Honorific Title'];
+    var personName = title + ' ' + mp.Fname + ' ' + mp.Lname;
+    var backgroundColour = colours[mp['Political Affiliation']];
+
+    $('#FloorPlanCardPhoto').attr('src', mp.ImgUrl);
+    $('#PersonName').text(personName);
+    $('#CaucusName').text(mp['Political Affiliation']);
+    $('#ConstituencyName').text(mp.Constituency);
+    $('#ProvinceName').text(mp.Province);
+    $('#CaucusColour').css('background-color', backgroundColour);
+    $('#FloorPlanCard-Horizontal').css('visibility', 'visible');
+
+    return;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////
+// Draws all the MPS according to their coordinates and party Affiliation
+// Assigns appropriate click handlers to each MP. Note that seat assignment is done
+// by block, so a particular MP woud be found under <svg> ---> <g> ---> <rect>
+//////////////////////////////////////////////////////////////////////////////////////////////*/
+
+function renderMps(data, block, index, side) {
+
+    var padding = 10;
+    var blockStart = block[0];
+    var blockEnd = block[1];
+    var blockOffset = blockStart * width - index * padding;
+    var getMpX = function getMpX(d) {
+
+        var xOffset = width + 1;
+        var xBlockOffset = d.Column - blockStart; // Column - blockStart is offset within block
+        return xBlockOffset * xOffset;
+    };
+    var getMpY = function getMpY(d) {
+
+        var yOffset = height + 1;
+        return side === 'opposition' ? d.Row * yOffset : (d.Row - 7) * yOffset; // Normalize gov mp rows
+    };
+
+    // Group by seating block
+    var _block = d3.select('#' + side).append('g').attr('width', 1024).attr('height', 300).attr('transform', function () {
+        return 'translate (' + blockOffset + ', 0)';
+    });
+
+    // Assign block seats
+    _block.selectAll('rect').data(data).enter().append('rect').attr('x', getMpX).attr('y', getMpY).attr('width', width).attr('height', height).attr('status', 'dormant').on('click', handleRectClick).on('mouseout', handleRectMouseout).on('mouseover', handleRectMouseover).attr('fill', function (d) {
+        return colours[d['Political Affiliation']];
+    });
+
+    return;
+}
+
+$('.FloorPlan-RefinerValues').change(handleFilterChange);
+$('#FloorPlan-TextboxContainer').keypress(handleTBCKeypress);
+$('#FloorPlan-FindMPButton').click(handleFindMPButtonClick);
+$('#FloorPlan-ClearFindMP').click(handleClearFindMPClick);
+
+// App 'entry point'
 seatingBlocks.forEach(function (block, index) {
 
     var oppMps = house.getMps.apply(house, [0, 4].concat(_toConsumableArray(block)));
@@ -157,142 +367,5 @@ seatingBlocks.forEach(function (block, index) {
         renderMps(mps, block, index, 'government');
     });
 });
-
-/* ////////////////////////////////////////////////////////////////////////////////////////////
-// Draws all the MPS according to their coordinates and party Affiliation
-// Assigns appropriate click handlers to each MP. Note that seat assignment is done
-// by block, so a particular MP woud be found under <svg> ---> <g> ---> <rect>
-//////////////////////////////////////////////////////////////////////////////////////////////*/
-
-function renderMps(data, block, index, side) {
-
-    var padding = 10;
-    var blockStart = block[0];
-    var blockEnd = block[1];
-    var blockOffset = blockStart * width - index * padding;
-
-    // Group by seating block
-    var _block = d3.select('#' + side).append('g').attr('width', 1024).attr('height', 300).attr('transform', function () {
-        return 'translate (' + blockOffset + ', 0)';
-    });
-
-    // Assign block seats
-    _block.selectAll('rect').data(data).enter().append('rect').attr('x', getMpX).attr('y', getMpY).attr('width', width).attr('height', height).attr('status', 'dormant').attr('fill', function (d) {
-        return colours[d['Political Affiliation']];
-    }).on('click', handleRectClick).on('mouseover', function (d) {
-
-        var visibility = $('#FloorPlanCard-Horizontal').css('visibility');
-        if (visibility === 'hidden') renderMPCard(d);
-    }).on('mouseout', function (d) {
-
-        var status = $('#FloorPlanCard-Horizontal').attr('class');
-        if (status === 'free') $('#FloorPlanCard-Horizontal').css('visibility', 'hidden');
-    });
-
-    function handleRectClick(d) {
-
-        var cardStatus = $('#FloorPlanCard-Horizontal').attr('class');
-        var mpStatus = d3.select(this).attr('status');
-
-        if (mpStatus === 'dormant') {
-            d3.select(this).attr('status', 'active');
-            $('#FloorPlanCard-Horizontal').attr('class', 'locked');
-            $('#FloorPlanCard-Horizontal').css('visibility', 'visible');
-        } else {
-            d3.select(this).attr('status', 'dormant');
-            $('#FloorPlanCard-Horizontal').attr('class', 'free');
-            $('#FloorPlanCard-Horizontal').css('visibility', 'hidden');
-        }
-        renderMPCard(d);
-
-        return;
-    }
-
-    function getMpX(d) {
-
-        var xOffset = width + 1;
-        var xBlockOffset = d.Column - blockStart; // Column - blockStart is offset within block
-        return xBlockOffset * xOffset;
-    }
-
-    function getMpY(d) {
-
-        var yOffset = height + 1;
-        return side === 'opposition' ? d.Row * yOffset : (d.Row - 7) * yOffset; // Normalize gov mp rows
-    }
-
-    function renderMPCard(d) {
-
-        var title = d['Honorific Title'];
-        var personName = title + ' ' + d.Fname + ' ' + d.Lname;
-        var backgroundColour = colours[d['Political Affiliation']];
-
-        $('#FloorPlanCardPhoto').attr('src', d.ImgUrl);
-        $('#PersonName').text(personName);
-        $('#CaucusName').text(d['Political Affiliation']);
-        $('#ConstituencyName').text(d.Constituency);
-        $('#ProvinceName').text(d.Province);
-        $('#CaucusColour').css('background-color', backgroundColour);
-        $('#FloorPlanCard-Horizontal').css('visibility', 'visible');
-
-        return;
-    }
-}
-
-$('#FloorPlan-FindMPButton').click(handleSearchClick);
-
-function handleSearchClick() {
-    var searchTerm = $('#FloorPlan-FindMPInput').val();
-
-    // Highlight MPs that match wholly or partially the search term
-    var mps = d3.selectAll('rect').attr('opacity', function (d) {
-
-        var constNames = d.Constituency.split("—");
-
-        // if search term in beginnig of any of riding names, then inConst is true
-        var inConst = constNames.reduce(function (prev, curr, index) {
-            return prev || constNames[index].indexOf(searchTerm) === 0;
-        }, false);
-
-        var inFname = d.Lname.indexOf(searchTerm) === 0;
-        var inLname = d.Fname.indexOf(searchTerm) === 0;
-        // let inConst = d.Constituency.indexOf(searchTerm) !== -1;
-        if (inFname || inLname || inConst) {
-            return 1;
-        } else {
-            return 0.3;
-        }
-    });
-
-    console.log(searchTerm);
-    console.log("Click Captured");
-}
-
-// Filter by province and/or gender
-$('.FloorPlan-RefinerValues').change(handleFilterChange);
-
-/* ////////////////////////////////////////////////////////////////////////////////////////////
-// This function (callback) highlight MPs that meet the users specification of gender
-// and/or province. MPs that don't are 'defocused'
-//////////////////////////////////////////////////////////////////////////////////////////////*/
-
-function handleFilterChange() {
-
-    var provinceId = $('#FloorPlan-ProvinceList').val();
-    var gender = $('#FloorPlan-GenderList').val();
-
-    d3.selectAll('rect').attr('opacity', function (d) {
-        var isSameGender = d.Gender === gender || gender === 'A';
-        var isSameProvince = provinceId === '0' || provinces[provinceId] === d.Province;
-
-        return !isSameGender || !isSameProvince ? 0.3 : 1;
-    });
-
-    // Hide the MP card
-    $('#FloorPlanCard-Horizontal').attr('class', 'free');
-    $('#FloorPlanCard-Horizontal').css('visibility', 'hidden');
-
-    return;
-}
 
 },{"./House.js":1}]},{},[2]);

@@ -28,22 +28,22 @@ export class House {
     //////////////////////////////////////////////////////////////////////////////////////////////*/
 
     getImage(mp) {
-        
+
         let img = new Image();
         img.onerror = (error) => {
             console.log(`Unable to get image for ${mp.Fname} ${mp.Lname}`);
             console.log(error);
-        }
+        };
 
         if(typeof mp.ImgName === "undefined") {
             mp.ImgName = `${mp.Lname}${mp.Fname}_${parties[mp["Political Affiliation"]]}`;
             mp.ImgName = mp.ImgName.replace(/[' \.-]/g, ''); // Take care of middle name letters and hyphenated last names
         }
 
-        mp.ImgUrl = `http://www.parl.gc.ca/Parliamentarians/Images/OfficialMPPhotos/42/${mp.ImgName}.jpg`
+        mp.ImgUrl = `http://www.parl.gc.ca/Parliamentarians/Images/OfficialMPPhotos/42/${mp.ImgName}.jpg`;
         img.src = mp.ImgUrl;
 
-
+        return;
     }
 
     /* ////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@ export class House {
             .endAt(_rowEnd)
             .once('value')
             .then((snapshot) => {
-                return this._handlegetMpsResult(snapshot, columnStart, columnEnd) //verbose but clear
+                return this._handlegetMpsResult(snapshot, columnStart, columnEnd); //verbose but clear
             });
     }
 
@@ -86,5 +86,32 @@ export class House {
             }
         }
         return mps;
+    }
+
+    separateMPs(searchTerm) {
+
+        let setInclusion = (d) => {
+
+            let constNames = d.Constituency.split("—");
+
+            // if search term in beginnig of any of riding names, then inConst is true
+            let inConst = constNames.reduce((prev, curr, index) => {
+                return prev || constNames[index].indexOf(searchTerm) === 0;
+            }, false);
+
+            let inFname = d.Lname.indexOf(searchTerm) === 0;
+            let inLname = d.Fname.indexOf(searchTerm) === 0;
+
+            return (inFname || inLname || inConst) ? 'included' : 'excluded';
+        };
+
+        d3.selectAll('rect').attr('inclusion', setInclusion);
+
+        let separatedMPs = {
+            includedMPs: d3.selectAll('[inclusion=included]'),
+            excludedMPs: d3.selectAll('[inclusion=excluded]')
+        };
+
+        return separatedMPs;
     }
 }

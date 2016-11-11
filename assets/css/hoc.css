@@ -98,14 +98,14 @@ textarea {
     {
         font-family: Verdana, Arial, Helvetica, sans-serif;
         margin: 0px auto;
-        position:relative;    
+        position:relative;
         width:960px;
     }
-        
+
     .main-content
     {
         display: block;
-        margin:0px;    
+        margin:0px;
     }
 
     .superscript:lang(fr)
@@ -114,37 +114,37 @@ textarea {
     }
 
     div>span
-    {        
+    {
         FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
     }
-    
+
     p
-    {        
-        FONT-FAMILY: Georgia;    
+    {
+        FONT-FAMILY: Georgia;
         font-size:1em;
         line-height: 1.5em;
         margin-top:0;
     }
-    
+
     .parliament div>span
-    {        
-        font-size:0.8em;        
+    {
+        font-size:0.8em;
     }
- 
+
     p a
     {
         text-decoration:underline;
     }
-    
+
     .date-to
     {
         padding-bottom: 5px;
         display:block ;
     }
-    
+
     .date-from
     {
-        padding-top: 15px;        
+        padding-top: 15px;
         display:block ;
     }
 
@@ -153,20 +153,20 @@ textarea {
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
     a
     {
-        color: #0059c1;                
+        color: #0059c1;
     }
-    
+
     a:hover
     {
         text-decoration:underline;
     }
-    
+
     /*Accessibility*/
     a:focus img
     {
-        border: 1px dotted black;        
-    }        
-    
+        border: 1px dotted black;
+    }
+
     /* Links */
     a:visited {
     }
@@ -182,17 +182,17 @@ textarea {
     {
         color:#666;
     }
-        
+
     .breadcrumb a
     {
         text-decoration:none;
     }
-    
-    .skipnav 
+
+    .skipnav
     {
         position:fixed;
         top:0px;
-        right:5000px;        
+        right:5000px;
     }
 
     /* Site Nav */
@@ -211,7 +211,7 @@ textarea {
         .navbar li
         {
             display: inline;
-            position:relative;            
+            position:relative;
         }
 
         .navbar a {
@@ -245,7 +245,7 @@ textarea {
 
         .navbar a:hover, .navbar a:focus, .navbar a:active, .navbar li.active a {
                 text-decoration: underline;
-                border-right: 1px #d1d1d1 solid;                
+                border-right: 1px #d1d1d1 solid;
 
                 background: #ffffff; /* Old browsers */
                 background: -moz-linear-gradient(top,  #ffffff 0%, #f4f4f4 50%, #e5e5e5 100%); /* FF3.6+ */
@@ -266,16 +266,16 @@ textarea {
         {
             text-decoration:underline;
         }
-        
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    PAGING
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */ 
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
     .pagination {
       margin: 20px 0;
       clear:both;
     }
 
-    .pagination ul 
+    .pagination ul
     {
       display: inline-block;
       *display: inline;
@@ -302,7 +302,7 @@ textarea {
       text-decoration: none;
       background-color: #ffffff;
       border: 1px solid #dddddd;
-      border-left-width: 0;      
+      border-left-width: 0;
     }
 
     .pagination ul > li > a:hover,
@@ -351,7 +351,7 @@ textarea {
 
     .pagination-large ul > li > a,
     .pagination-large ul > li > span {
-      FONT-SIZE: 1em; 
+      FONT-SIZE: 1em;
     }
 
     .pagination-large ul > li:first-child > a,
@@ -400,25 +400,25 @@ textarea {
 
     .pagination-small ul > li > a,
     .pagination-small ul > li > span {
-        FONT-SIZE: .75em;  
+        FONT-SIZE: .75em;
         width: 28px;
     }
 
     .pagination-mini ul > li > a
     {
-        PADDING-LEFT: 6px; 
-        PADDING-RIGHT: 6px; 
-        FONT-SIZE: .75em; 
-    }    
-     
+        PADDING-LEFT: 6px;
+        PADDING-RIGHT: 6px;
+        FONT-SIZE: .75em;
+    }
+
     .pagination-mini ul > li > span {
-        PADDING-BOTTOM: 0px; 
-        PADDNG-LEFT: 6px; 
-        PADDING-RIGHT: 6px;  
-        FONT-SIZE: .75em; 
+        PADDING-BOTTOM: 0px;
+        PADDNG-LEFT: 6px;
+        PADDING-RIGHT: 6px;
+        FONT-SIZE: .75em;
         PADDING-TOP: 0px;
     }
-    
+
     /* Overrides */
     .pagination, .pagination ul
     {
@@ -439,7 +439,7 @@ textarea {
     .pagination ul > .next > a,
     .pagination ul > .next > span
     {
-       
+
     }
     .pagination .ui-icon
     {
@@ -452,11 +452,11 @@ textarea {
     {
         line-height:30px;
     }
-    
+
     h4
     {
         border-bottom: 1px dotted silver;
-        font-size:0.9em;        
+        font-size:0.9em;
     }
 
     h1.site-title
@@ -493,60 +493,60 @@ textarea {
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    TOOL BAR / Profile Bar
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-    
-    .toolbar, .profilebar 
+
+    .toolbar, .profilebar
     {
         font-size: 0.75em;
         margin: .5em 0 1em 0;
         padding: 0.7em 0 0.3em 0;
-        border-bottom: 1px grey dotted;        
-        overflow:hidden;        
+        border-bottom: 1px grey dotted;
+        overflow:hidden;
     }
-    
+
     .toolbar h3
     {
-        display: inline;   
+        display: inline;
         line-height:1em;
     }
-    
+
     .profilebar li.active
     {
         font-weight:bold;
     }
-    
-     .profilebar 
+
+     .profilebar
     {
-        background-color:#f6f6f6;      
-        height: 22px;          
+        background-color:#f6f6f6;
+        height: 22px;
     }
-    
+
     .toolbar ul, .toolbar li, .profilebar ul, .profilebar li
     {
         margin:0;
         padding:0;
-        display: inline;        
+        display: inline;
     }
     .toolbar li, .profilebar li
     {
         display: inline-block;
         margin: 0 0.5em 0 0.5em;
     }
-    
+
     .toolbar li.separator, .profilebar  li.separator
     {
         margin:0;
     }
-    
+
     .toolbar a, .profilebar a
     {
-        text-decoration:none;        
+        text-decoration:none;
     }
-    
+
     .toolbar a:hover, .profilebar a:hover
     {
         text-decoration:underline;
     }
-   
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    LAYOUTS
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -558,143 +558,143 @@ textarea {
     .content-primary
     {
         width:694px;
-        float:left;        
+        float:left;
         padding-right:16px;
     }
-    
+
     .fright
-    {        
+    {
         float: right;
     }
-    
+
     .fleft
     {
         float:left;
     }
-      
+
     .spacer
     {
         height:20px;
     }
-    
+
     .centered
     {
         text-align:center;
     }
-    
+
     .historicalLink
     {
         padding-top:15px;
-        padding-bottom:15px;    
+        padding-bottom:15px;
         width:inherit;
-        max-width:760px; 
-        clear:both;   
+        max-width:760px;
+        clear:both;
         font-size:0.875em;
-    }       
-    
+    }
+
     .BottomInfo, .footer-info
-    {        
-        clear:both;   
+    {
+        clear:both;
         font-family:Verdana;
-        font-size:0.75em;        
+        font-size:0.75em;
         width:100%;
-        text-decoration:none;        
+        text-decoration:none;
         padding-bottom:12px;
         padding-top:10px;
-    }    
-    
+    }
+
    .footer-info a
     {
         color:black;
-        text-decoration:none;        
-    }  
-    
+        text-decoration:none;
+    }
+
     .ListMessage
     {
         padding-top:15px;
-        padding-bottom:15px;    
+        padding-bottom:15px;
         width:inherit;
-        max-width:760px; 
-        clear:both;   
+        max-width:760px;
+        clear:both;
         font-family:Verdana;
         font-size:0.8em;
-    }      
-    
+    }
+
     .topindent
     {
         margin-top: 10px;
-    }    
-    
+    }
+
     .indent
     {
         margin-left: 30px;
     }
-    
+
     .doubleindent
     {
         margin-left: 40px;
-    }   
-    
+    }
+
     .bold
-    {        
-        font-weight:bold;        
-    }    
+    {
+        font-weight:bold;
+    }
 
     .top-note
-    {        
+    {
         display:inline-block;
-        font-size:0.875em;     
+        font-size:0.875em;
         padding-bottom: 15px;
-    }        
-    
+    }
+
     .disabled
-    { 
+    {
       background-color: rgb(245, 245, 245);
-    }    
-    
+    }
+
     .disabled > a
-    {     
-        pointer-events: none;     
-        cursor:default; 
+    {
+        pointer-events: none;
+        cursor:default;
     }
-    
+
     .disabled > a > span
-    { 
-        opacity: .5;                   
+    {
+        opacity: .5;
     }
-    
+
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    GENERIC LISTS & LIST ITEMS
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-    
+
      /* Generic .list */
     .list a
     {
-        text-decoration:none;        
+        text-decoration:none;
     }
-    
+
     .list a:hover
     {
         color:Black;
-        text-decoration:underline;        
+        text-decoration:underline;
     }
-    
-    .list abbr[title], .list acronym[title] 
+
+    .list abbr[title], .list acronym[title]
     {
         text-decoration:none;
         border-bottom-width: 0;
     }
-    
-    /* UL with .list */ 
+
+    /* UL with .list */
     ul.list
     {
         margin: 0 auto 0 auto;
         padding: 0;
         list-style: none;
-        float:left;    
+        float:left;
     }
-      
+
     ul.list>li>div
     {
         width:inherit;
@@ -709,28 +709,28 @@ textarea {
         vertical-align: top;
         margin: 0 -4px 20px 0;
         border: 0;
-        padding: 0 0 0.5em 0;         
+        padding: 0 0 0.5em 0;
         /* For IE 7 */
         zoom: 1;
         *display: inline;
-    } 
- 
+    }
+
     ul.vertical.list>li
     {
-        display:block;        
+        display:block;
         width:auto;
         margin:5px 5px 20px 5px;
     }
-    
+
     /* TABLES with .list */
-    table.list { 
+    table.list {
 	    background-color: #fff;
 	    width: 100%;
 	    border-width:0;
     }
-    
-    table.list tr:nth-child(odd) { 
-       background-color: #fafafa;  
+
+    table.list tr:nth-child(odd) {
+       background-color: #fafafa;
     }
     table.list th {
 	    color: #333;
@@ -746,26 +746,26 @@ textarea {
 	    padding: 6px 8px 6px 8px;
 	    font-weight: normal;
 	    font-size: .825em;
-	    border-bottom: 1px dotted #ccc; /*#aaa;*/		    
+	    border-bottom: 1px dotted #ccc; /*#aaa;*/
     }
 
-    table.list td a:hover { 
+    table.list td a:hover {
 	    text-decoration: underline;
     }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    ICONS
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-    span[class^="icon-"], .icon 
+    span[class^="icon-"], .icon
     {
       background-image: url("images/glyphicons-halflings.png");
       width: 30px;
-      padding-left:20px;              
+      padding-left:20px;
     }
-    
-    span.icon-th, 
+
+    span.icon-th,
      .icon.Tiles            { background-position: -240px 0; }
-    span.icon-list, 
+    span.icon-list,
     .icon.Grid              { background-position: -360px -48px; }
     span.icon-remove-circle { background-position: -168px -96px; }
     span.icon-ok-circle     { background-position: -192px -96px; }
@@ -777,19 +777,19 @@ textarea {
     span.icon-clear-value   { background-position: -49px  -0px; }
     span.icon-clear-value   { background-position: -49px  -0px; }
     span.icon-info          { background-position: -120px -96px;}
-    
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    REFINERS
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
     /* Panel */
         /* Main panel */
-        .refiner-list    
+        .refiner-list
         {
-            border: 1px #dedede solid;   
+            border: 1px #dedede solid;
             padding: 7px;
         }
-    
+
         /* Title */
         .refiner-list h3
         {
@@ -804,25 +804,25 @@ textarea {
             list-style:none;
             list-style-image:none;
             margin: 0;
-            padding: 0;    
-                
+            padding: 0;
+
         }
-    
+
     /* Refiners */
         /* LI representing one refiner with possible refinements. */
-        
+
         .offpage
         {
             overflow:hidden;
-            position:absolute;            
-            left:-9999px;                        
+            position:absolute;
+            left:-9999px;
             }
-        
+
         .refiner
         {
             overflow:hidden;
         }
-    
+
         /* Default for refiner and refinement labels. */
         .refiner .name, .refinement .name, .refiner .more, .refiner .less
         {
@@ -834,13 +834,13 @@ textarea {
         /* Refiner label; exception for first refiner. */
         .refiner>.name
         {
-            font-size: .75em;            
+            font-size: .75em;
             line-height: 1.3em;
             font-weight:bold;
             vertical-align:text-bottom;
             color: #555555;
             margin: 1.5em 0 0.25em 0;
-            text-transform: uppercase;            
+            text-transform: uppercase;
         }
         .refiner:first-child>.name
         {
@@ -865,24 +865,24 @@ textarea {
             margin:0px;
             line-height: 1.3em;
             font-size: 0.75em;
-            vertical-align:middle;            
+            vertical-align:middle;
         }
-        
+
         /*Accessibility*/
         .refinement a:focus,
         a.showmore:focus
         {
             outline: 0;
-            border: black dotted thin;            
-        }   
-        .refinement span, .refiner span 
+            border: black dotted thin;
+        }
+        .refinement span, .refiner span
         {
             display:inline-block;
             height: auto;
             vertical-align: top;
-        } 
+        }
         .refinement .freetext
-        { 
+        {
             text-align: right;
             width: 135px;
             height: 16px;
@@ -891,18 +891,18 @@ textarea {
             margin-top:    1px;
             vertical-align:top;
         }
-        .refinement a 
+        .refinement a
         {
             color:Black;
             text-decoration: none;
             height:auto;
             padding: .2em 0 .2em 0;
             display: inline-block;
-        } 
+        }
         .refinement a:hover .name
         {
             text-decoration: underline;
-        } 
+        }
         .refinement .count
         {
             width:32px;
@@ -933,7 +933,7 @@ textarea {
             width:   16px;
             display: none;
             margin:  1px 15px 1px 9px;
-        } 
+        }
         .refinement a .icon-search-only
         {
             padding-left:0px;
@@ -941,24 +941,24 @@ textarea {
             width:   16px;
             display: none;
             margin:  1px 1px 1px 41px;
-        } 
-        .refinement.active 
+        }
+        .refinement.active
         {
             background-color: #dce6f0;
         }
-    
+
     /* Selection icons */
-        
+
         /* Default selection icon (checkbox behavior) */
         *[class^="refiner-display-"] .refinement.active span.icon   { background-position: -168px -96px; display: inline-block; }
-        
+
         /* Selection icon (radio button behavior) */
         .refiner-display-parliament .refinement.active span.icon    { background-position: -192px -96px; display: inline-block;}
-        
+
         .refiner-display-freetext   .refinement span.icon-search        { background-position: -49px   -0px; display: inline-block;}
         .refiner-display-freetext   .refinement span.icon-search-only   { background-position: -49px   -0px; display: inline-block;}
         .refiner-display-freetext   .refinement.active span.icon-clear  { background-position: -168px -96px; display: inline-block;}
-    
+
     /* Alpha-Picker; applies generally only for non .active elements. Active elements assumme default style above. */
         /* Reset default width for .name */
         .refiner-display-alphapicker:not(.active)
@@ -975,7 +975,7 @@ textarea {
         }
         .refiner-display-alphapicker .refinement:not(.active) .name
         {
-            width: auto; 
+            width: auto;
         }
         /* LI for each letter. */
         .refiner-display-alphapicker .refinement:not(.active)
@@ -987,16 +987,16 @@ textarea {
             /* For IE 7 */
             zoom: 1;
             *display: inline;
-            font-size:0.825em;         
+            font-size:0.825em;
             text-align:center;
-        }        
+        }
         /* PT # 33426*/
         .refiner-display-alphapicker .refinement:not(.active) a:focus
-        {            
+        {
             outline: black dotted thin;
-            border: none;                        
-        }    
-                
+            border: none;
+        }
+
         /* Non-selectable letter */
         .refiner-display-alphapicker .refinement:not(.active) span
         {
@@ -1008,14 +1008,14 @@ textarea {
             color: Black;
         }
 
-            
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    Find MP
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */ 
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
     .findmp.message
     {
-      border: 1px #dedede solid;   
+      border: 1px #dedede solid;
       font-family: Verdana, Arial, Helvetica, sans-serif;
       font-size:0.825em;
       width:600px;
@@ -1033,13 +1033,13 @@ textarea {
 
     .findMP
     {
-      border: 1px #dedede solid;   
+      border: 1px #dedede solid;
       font-size:0.825em;
       width:300px;
       padding: 7px;
       margin-bottom:10px;
     }
-        
+
     .findMP .textboxcontainer {
       padding-top:10px;
     }
@@ -1067,18 +1067,18 @@ textarea {
       width:220px;
 }
 */
-         
+
     .findMP .textboxcontainer .button {
        float:right;
     }
-   
-    .findMP .seatvacant 
+
+    .findMP .seatvacant
     {
         font-size:0.825em;
     }
 
     /* Used in Members of Parliament page */
-    
+
     .findMPs .textbox-en {
       font-size:1em;
       width:200px;
@@ -1088,14 +1088,14 @@ textarea {
       font-size:1em;
       width:195px;
     }
-    
-    
+
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    Members Of Parliament List
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */    
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
     .list.member-of-parliament .picture
     {
-        display:block;   
+        display:block;
     }
     .list.member-of-parliament a .full-name
     {
@@ -1108,7 +1108,7 @@ textarea {
     }
     .list.member-of-parliament .picture
     {
-        width:   90px; 
+        width:   90px;
         height:  143px;
     }
    .list.member-of-parliament .caucus-banner
@@ -1117,267 +1117,267 @@ textarea {
         height: 6px;
         margin: 2px 0 2px 0;
     }
-    
+
     .list.member-of-parliament li
     {
         font-size:0.75em;
         height: auto;
         padding-left:10px
     }
-    
+
     .list.member-of-parliament div
     {
         padding-left: 2px;
     }
-    
+
     .list.tiles.member-of-parliament  div.caucus
     {
-        PADDING-BOTTOM: .5em;        
+        PADDING-BOTTOM: .5em;
     }
- 
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    Members Of Parliament List
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */   
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
     .custom-message-container
     {
         /* HACK: temp */
         /*display:none;*/
         clear:both;
-        width:936px;    
+        width:936px;
         font-size: 0.875em;
-        border: thin solid silver;                
-        padding: 10px 10px 10px 10px;        
+        border: thin solid silver;
+        padding: 10px 10px 10px 10px;
         margin: 5px 0px 5px 0px;
-        float:left;        
+        float:left;
     }
-    
+
     .custom-message-container.ListContainer
     {
-        width:675px;            
+        width:675px;
     }
-    
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    Home / Landing Pages
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */   
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
     .home
-    {     
-        overflow:hidden;        
+    {
+        overflow:hidden;
     }
-    
+
     .home.info
-    {   
+    {
         margin-bottom:10px;
         padding-bottom:10px;
     }
-    
-    .home.info>div
-    {   
-        padding-right:15px;        
-    }
-     
-     .home.info p
-    {   
-        margin-top:0;        
-    } 
 
-    
+    .home.info>div
+    {
+        padding-right:15px;
+    }
+
+     .home.info p
+    {
+        margin-top:0;
+    }
+
+
     .home.previous
     {
         border-bottom: 1px dotted silver;
-        border-top: 1px dotted silver;        
-        padding-bottom: 0px; 
-        height: auto; 
-    }   
-    
+        border-top: 1px dotted silver;
+        padding-bottom: 0px;
+        height: auto;
+    }
+
     .home.previous ul.list>li
     {
-        height: auto; 
-        min-height: 100px; 
-    } 
-    
+        height: auto;
+        min-height: 100px;
+    }
+
     .home.current
     {
-        padding-top:20px;                
-        border-top: 1px dotted silver;    
-        font-family: Georgia;         
-    }    
-    
+        padding-top:20px;
+        border-top: 1px dotted silver;
+        font-family: Georgia;
+    }
+
    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    Chair Occupants
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */   
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
     .custom-message-container.SpeakerHome
-    {           
+    {
         width: 790px;
-        FONT-FAMILY: Georgia;    
+        FONT-FAMILY: Georgia;
         font-size:1em;
         line-height: 1.5em;
-        FONT-FAMILY: Georgia;            
-        margin-top:0;        
+        FONT-FAMILY: Georgia;
+        margin-top:0;
         padding: 0 0 0 0;
         border: none;
         display: inline-block ;
         float:left;
         clear:right;
-    }    
+    }
 
-       
-    .list.parliament li 
+
+    .list.parliament li
     {
-        width:135px;        
-        Padding-left:10px;             
-        Padding-right:10px;             
-        text-align:center;        
-    }   
-        
-    .list.parliament li span.parliament    
+        width:135px;
+        Padding-left:10px;
+        Padding-right:10px;
+        text-align:center;
+    }
+
+    .list.parliament li span.parliament
     {
         font-family: Georgia;
-    }  
-    
+    }
+
     .list.parliament>li>div
-    {      
+    {
         border-Right: 1px solid grey;
         padding-right: 10px;
         margin-right: 15px;
         padding-left: 0;
         height: auto;
     }
-    
+
     .list.parliament>li:last-child>div
-    {        
+    {
         border-Right:0;
-        padding-right: 0;        
+        padding-right: 0;
     }
-    
+
     .list.chair-occupants.current a .full-name
     {
         color:#0059c1;
-        text-align: center; 
+        text-align: center;
         padding-bottom:8px;
     }
-  
+
     .list.chair-occupants.current .title
     {
         color:Black;
-        text-align: center; 
+        text-align: center;
     }
-  
+
     .list.chair-occupants.current li
     {
         font-size:1em;
-        height: auto;           
-        width: 200px;    
+        height: auto;
+        width: 200px;
         margin-left:0px;
         margin-right:60px;
-        text-align: center; 
+        text-align: center;
     }
-    
+
      .list.chair-occupants.current li:first-child
-    {               
-        width: 142px;            
-        margin-right:80px;        
+    {
+        width: 142px;
+        margin-right:80px;
     }
-    
+
     .list.chair-occupants.current li:last-child
-    {        
-        margin-right:0px;        
+    {
+        margin-right:0px;
     }
-    
+
     .list.chair-occupants.current div
     {
-        padding-left: 2px;        
-    }  
-    
-    
-    
+        padding-left: 2px;
+    }
+
+
+
    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    Card Tile View
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */       
-   
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
     .list.card .picture
     {
-        display:block;   
-        width:   125px; 
+        display:block;
+        width:   125px;
         height:  200px;
     }
-    
+
     .list.card.tiles a .full-name
     {
         color:#0059c1;
-        text-align: left; 
+        text-align: left;
         line-height:1.5em;
-        font-size: 1.3125em;    
+        font-size: 1.3125em;
     }
-    
+
     .list.card.tiles a .full-name>span
     {
         font-family: Georgia;
-    }      
-  
+    }
+
     .list.card.tiles .caucus
     {
-        padding-top: 15px;        
+        padding-top: 15px;
         padding-bottom: 5px;
     }
-    
+
     .list.card.tiles .Precedence
     {
         padding-top: 15px;
     }
-    
+
     .list.card.tiles .seatvacant
     {
         padding-top: 15px;
-        font-size: 0.9em;  
+        font-size: 0.9em;
     }
-    
+
     .list.card.tiles
     {
-        width: inherit;        
-    } 
-  
+        width: inherit;
+    }
+
     .list.card.tiles>li
     {
         font-size:0.9em;
-        height: auto;     
-        width: inherit;   
-        display:inline-block;      
-        min-height:200px;     
-    } 
-    
+        height: auto;
+        width: inherit;
+        display:inline-block;
+        min-height:200px;
+    }
+
     .list.card.tiles ul.title
     {
-        list-style:none;        
-        padding:0;        
-        margin-top:0;        
+        list-style:none;
+        padding:0;
+        margin-top:0;
         margin-bottom:0;
         font-size:1em;
-    }      
-    
+    }
+
     .list.card.tiles>li>div>div
     {
-        float:left;        
-    }      
-    
+        float:left;
+    }
+
     .list.card.tiles>li>div>div:nth-child(2)
-    {        
-        padding-left: 21px;           
-        padding-top: 21px;             
-        width:470px;               
-    }   
-    
+    {
+        padding-left: 21px;
+        padding-top: 21px;
+        width:470px;
+    }
+
    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    MP Profile
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */       
-   
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
     .profile
     {
         width:100%;
     }
-    
+
     .infotext
     {
-            height:100%;            
+            height:100%;
             background: #ffffff; /* Old browsers */
             background: -moz-linear-gradient(top,  #ffffff 0%, #f4f4f4 50%, #e5e5e5 100%); /* FF3.6+ */
             background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f4f4f4), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
@@ -1385,525 +1385,525 @@ textarea {
             background: -o-linear-gradient(top,  #ffffff 0%,#f4f4f4 50%,#e5e5e5 100%); /* Opera 11.10+ */
             background: -ms-linear-gradient(top,  #ffffff 0%,#f4f4f4 50%,#e5e5e5 100%); /* IE10+ */
             background: linear-gradient(to bottom,  #ffffff 0%,#f4f4f4 50%,#e5e5e5 100%); /* W3C */
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5e5e5', endColorstr='#ffffff',GradientType=0); /* IE6-9 */     
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5e5e5', endColorstr='#ffffff',GradientType=0); /* IE6-9 */
     }
-    
+
     .infotext p
     {
         padding-top:40px;
-        text-align:center;                
+        text-align:center;
     }
-    
+
     .profile.overview.header span
     {
         font-family: Verdana;
-        font-size: 0.9em;        
+        font-size: 0.9em;
     }
-    
+
     .profile.overview.header a .full-name
     {
         color:#0059c1;
-        text-align: left; 
+        text-align: left;
         line-height:1.5em;
         font-size: 1.3125em;
-    }  
-    
-    .profile.overview.header a 
+    }
+
+    .profile.overview.header a
     {
         text-decoration:none;
-    }  
-    
+    }
+
     .profile.overview.header .external a
     {
         text-decoration:underline;
-    }  
-    
+    }
+
     .profile.overview.header .label
     {
-        text-align: right;         
+        text-align: right;
         min-width:170px;
         max-width:225px;
-        display:inline-block; 
-    }  
-    
+        display:inline-block;
+    }
+
     .profile.overview.header .label + span
     {
         padding-left: 10px;
-    }  
- 
+    }
+
     .profile.overview.header>div
     {
         float:left;
-    }   
-    
+    }
+
     .profile.overview.header>div>div,
     .profile.overview.header>div>div>div
-    {        
-        padding-bottom:10px;                
-    } 
-    
+    {
+        padding-bottom:10px;
+    }
+
     .profile.overview.header>div>div>span,
     .profile.overview.header>div>div>div>span
-    {      
+    {
         vertical-align:top;
-    }       
-    
+    }
+
     .profile.overview.header>div:nth-child(2)
-    {        
-        margin-left: 25px;           
-        padding-top: 0px;             
-        width:790px;           
-        display:inline-block;       
-        border-bottom: 1px dotted silver;     
-        Height: 110px;
-    }      
-    
-    .profile.overview.header>div:nth-child(3)
-    {        
-        margin-left: 25px;           
-        padding-top: 15px;                     
-        display:inline-block;    
+    {
+        margin-left: 25px;
+        padding-top: 0px;
         width:790px;
-    }      
-    
+        display:inline-block;
+        border-bottom: 1px dotted silver;
+        Height: 110px;
+    }
+
+    .profile.overview.header>div:nth-child(3)
+    {
+        margin-left: 25px;
+        padding-top: 15px;
+        display:inline-block;
+        width:790px;
+    }
+
     .profile.overview.current
-    {        
+    {
         margin-top:20px;
         padding-top:25px;
         padding-left:0px;
-        border-top: 1px dotted silver;   
-        display:inline-block;   
-        width:955px;  
+        border-top: 1px dotted silver;
+        display:inline-block;
+        width:955px;
     }
-    
+
     .div.profile .constituencyoffices
     {
-        width:170px;                         
-        padding-left:30px;      
-        padding-right:10px;      
-    }    
-    
-    .profile.overview.current>div 
+        width:170px;
+        padding-left:30px;
+        padding-right:10px;
+    }
+
+    .profile.overview.current>div
     {
-        display:inline-block;   
+        display:inline-block;
         float: left;
     }
-    
+
     .hilloffice
     {
-        width:250px;                         
-        padding-left:25px;      
-        padding-right:25px;      
-    }  
-    
+        width:250px;
+        padding-left:25px;
+        padding-right:25px;
+    }
+
     .miniSeatPlanContainer
     {
         width:276px;
         padding-left:20px;
         padding-right:25px;
-    }  
-   
+    }
+
     .seatPlanImage
     {
         padding-top:25px;
         width:115px;
         height:auto;
     }
-    
+
     .hilloffice
     {
         border-left: 1px solid silver;
     }
-    
+
     .hilloffice span, .constituencyoffices span, .expenditures span, .seatPlan span, .miniSeatPlanContainer span
     {
-        display:block;   
+        display:block;
         font-family: verdana;
-        font-size:0.85em;                
+        font-size:0.85em;
     }
-    
+
     .constituencyoffices ul
     {
-        list-style:none;        
-        padding-left:0;      
+        list-style:none;
+        padding-left:0;
     }
-    
+
     div.profile .constituencyoffices
     {
-        width:300px;   
+        width:300px;
     }
-    
+
     span.addresstype
     {
-       font-size:1em;       
+       font-size:1em;
        width:inherit;
     }
-    
+
     .expenditures
     {
-        width:270px;            
+        width:270px;
         padding-right:20px;
-    }  
-    
-   
+    }
+
+
     .profile h4
-    {        
+    {
         font-size:1.2em;
         font-weight: normal;
-    } 
-    
+    }
+
     .profile h3
-    {                    
+    {
         font-size:1.8em;
         font-weight: normal;
-    } 
-    
+    }
+
     /*Roles*/
     .profile.roles
-    {   
+    {
         margin-bottom: 20px;
         display:inline-block;
-    } 
-    
+    }
+
     .profile.Roles h4
     {
-        width:760px;                
+        width:760px;
     }
-    
+
     .profile.roles h4, .profile.roles h3
     {
         margin-bottom: 5px;
-    }   
-            
-    .profile.roles>div:nth-child(2)
-    {        
-        margin-left: 25px;           
-    }  
-    
-    .profile.roles>div>div:not(.toolbar)
-    {        
-        padding-left: 25px;           
-    }   
-    
-    .profile.roles .member
-    {        
-        font-size: 1.1em;    
     }
-    
+
+    .profile.roles>div:nth-child(2)
+    {
+        margin-left: 25px;
+    }
+
+    .profile.roles>div>div:not(.toolbar)
+    {
+        padding-left: 25px;
+    }
+
+    .profile.roles .member
+    {
+        font-size: 1.1em;
+    }
+
     .profile.roles .toolbar
-    {        
-        font-size: 0.875em;    
+    {
+        font-size: 0.875em;
         vertical-align:text-bottom;
     }
-    
+
     div.rolesection
     {
-        width:760px;        
+        width:760px;
     }
-    
+
     div.daterangeheader, div.dateheader
     {
         width: 100%;
         text-align:right;
-    }    
-        
+    }
+
     div.daterangeheader span:first-child
     {
         width: 650px;
-        display:inline-block;        
-    }
-    
-    div.daterangeheader span:nth-child(2)
-    {
-        width: 110px;        
         display:inline-block;
     }
-    
+
+    div.daterangeheader span:nth-child(2)
+    {
+        width: 110px;
+        display:inline-block;
+    }
+
     .roledetail
-    {        
+    {
         margin-bottom: 8px;
-    }     
-    
+    }
+
     .roledetail a:hover
-    {        
+    {
         color:Black;
-        text-decoration:underline;     
-    } 
-    
+        text-decoration:underline;
+    }
+
     .roledetail a
-    {   
-        text-decoration:none;     
-    } 
-    
+    {
+        text-decoration:none;
+    }
+
     .roledetail.date span:nth-child(1)
-    {        
+    {
         display: inline-block;
         width: 650px;
-    }      
+    }
 
     .roledetail.date.indent span:nth-child(1)
-    {        
+    {
         display: inline-block;
         width: 620px;
-    }             
+    }
 
     .roledetail.date span:nth-child(2)
     {
-        width: 110px;        
+        width: 110px;
         display: inline-block;
         text-align: right;
-    }      
-    
+    }
+
     .roledetail.daterange span:nth-child(1)
-    {        
+    {
         display: inline-block;
         width: 540px;
-    }   
-    
+    }
+
     .roledetail.daterange.indent span:nth-child(1)
     {
-        width: 510px;        
-    }   
-    
+        width: 510px;
+    }
+
     .roledetail.daterange.doubleindent span:nth-child(1)
     {
-        width: 500px;        
-    }   
+        width: 500px;
+    }
 
     .roledetail.daterange span:nth-child(2), .roledetail.daterange span:nth-child(3)
     {
-        width: 110px;        
+        width: 110px;
         display: inline-block;
         text-align: right;
-    }    
-    
+    }
+
     .alternate:nth-child(even)
     {
         background-color: #f6f6f6;
-    }      
-    
+    }
+
     .profile.roles>div,
     .profile.work>div
-    {        
-        float:left;        
+    {
+        float:left;
         font-size:0.875em;
-    }     
-    
+    }
+
     /*Work*/
-    
+
      .profile.work>div:nth-child(2)
-    {        
+    {
         width:815px;
-    }  
-    
+    }
+
     .profile.work a
     {
-        text-decoration: none;                   
+        text-decoration: none;
     }
-    
+
     .profile.work a:hover
     {
-        text-decoration: underline;                   
-    }    
-        
+        text-decoration: underline;
+    }
+
     .special-work-message
     {
-        width:765px;    
-        border: thin solid silver;        
+        width:765px;
+        border: thin solid silver;
         padding: 10px 10px 0px 10px;
         margin-top:10px;
         float:left;
-    }  
-    
-    div.Inactiveworksection 
+    }
+
+    div.Inactiveworksection
     {
         width:100%;
         padding-left:32px;
         padding-bottom:15px;
-        float:left;                
-    }     
-    
+        float:left;
+    }
+
     .work-section-header
     {
-        width:770px;            
+        width:770px;
         padding: 10px 10px 0px 0px;
         margin-left:25px;
-        float:left;        
-    }  
-    
+        float:left;
+    }
+
     div.mp-worksection
     {
-        width:780px;    
-        border-bottom: thin dotted silver;        
+        width:780px;
+        border-bottom: thin dotted silver;
         padding: 10px 10px 20px 0px;
         margin-left:25px;
         float:left;
     }
-    
+
     div.mp-worksection span
     {
         display:inline-block;
-        vertical-align:bottom;         
-    }       
-    
+        vertical-align:bottom;
+    }
+
     .worksection-item-detail-ellipsis
     {
         overflow: hidden;
-        white-space:nowrap;        
-        text-overflow: ellipsis;                                                             
-    }         
-    
+        white-space:nowrap;
+        text-overflow: ellipsis;
+    }
+
     span.worksection-description
     {
         width:100%;
         padding-bottom: 10px;
-    } 
-    
+    }
+
     span.worksection-title
     {
-        font-size: 1.4em;        
+        font-size: 1.4em;
         width:100%;
         padding-bottom:10px;
-    }  
-    
+    }
+
     .workitem-number
     {
         width: 60px;
         padding-right:5px;
-        text-align:left; 
-    }                                  
-    
+        text-align:left;
+    }
+
     .workitem-date
-    {        
-        text-align:right; 
-    }     
-   
+    {
+        text-align:right;
+    }
+
     .bill-title,
     .motion-title
     {
-        width: 700px;        
-    }     
-          
-          
+        width: 700px;
+    }
+
+
     .intervention-sob,
     .intervention-committee
     {
         width: 460px;
         padding-right:5px;
-    }     
-    
+    }
+
     .intervention-oob,
     .intervention-meeting-number
     {
         width: 225px;
         padding-right:5px;
-    }     
-   
+    }
+
     .vote-subject
     {
-        width: 550px;        
-    }                 
-    
-       
+        width: 550px;
+    }
+
+
     .vote-cast
     {
-        width: 160px;        
+        width: 160px;
         text-align:right;
-    }  
+    }
 
     .vote-cast-header
     {
-        width: 775px;                
-        text-align:right;        
-    }  
-    
+        width: 775px;
+        text-align:right;
+    }
+
     span.view-all-workitems
     {
-        margin-top: 15px;               
+        margin-top: 15px;
     }
-       
-    div.worksection-details 
+
+    div.worksection-details
     {
-        width:100%;        
-        float:left;       
-    }    
-        
+        width:100%;
+        float:left;
+    }
+
     div.worksection-details div
     {
-        float:left;                       
-    }    
-   
-    
-    
-   
+        float:left;
+    }
+
+
+
+
    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    Address List
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */          
-   
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
    div.constituencyoffices
    {
-        width: 100%;        
+        width: 100%;
    }
-   
-   div.constituencyoffices ul 
+
+   div.constituencyoffices ul
    {
         list-style:none;
    }
-   
+
    div.constituencyoffices>ul
-   {        
+   {
         display:inline-block;
         width: 310px;
         vertical-align: text-top;
    }
-   
+
    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Motions List
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */          
-   
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
     .profile>div>div.motion
-    {        
+    {
         width:520px;
         float:left;
         padding-left: 20px;
-    } 
-    
+    }
+
     .profile .motion .list li
     {
         font-size:0.75em;
-        height: auto;     
-        width: 100%;   
-        display:inline-block;      
-        min-height:120px;     
-    }     
-    
+        height: auto;
+        width: 100%;
+        display:inline-block;
+        min-height:120px;
+    }
+
     .profile .motion .list li span,
     .profile .motion .list li div
-    {           
-        display:inline-block;              
-        float:left;        
-    }     
-    
-    .profile .motion .list li div.record-number 
-    {   
-        width: 70px;    
-        height:120px;       
+    {
+        display:inline-block;
+        float:left;
+    }
+
+    .profile .motion .list li div.record-number
+    {
+        width: 70px;
+        height:120px;
         color: green;
-        font-weight:bold;                
-    }        
-    
+        font-weight:bold;
+    }
+
     .profile .motion .list li div.parliament-session
-    {   
-        width: 100%;        
-        padding-bottom:5px;           
+    {
+        width: 100%;
+        padding-bottom:5px;
         color:gray;
-    }        
-    
+    }
+
     .profile .motion .list li div.parliament-session span
-    {   
+    {
         float:none;
-    } 
-    
+    }
+
     .profile .motion .list li div.details,
     .profile .motion .list li span.record-title,
     .profile .motion .list li span.motion-latest-activity,
@@ -1912,24 +1912,24 @@ textarea {
     .profile .motion .list li .motion-history-entry,
     .profile .motion .list li .motion-joint-seconder-date,
     .profile .motion .list li .motion-joint-seconder
-    {   
+    {
         width: 430px;
-    }     
-    
+    }
+
     .profile .motion .list li span.motion-text-title,
     .profile .motion .list li span.motion-latest-activity-title,
     .profile .motion .list li span.motion-full-history-title,
     .profile .motion .list li span.motion-joint-seconders-title
-    {   
+    {
         font-weight:bold;
         margin-top:12px;
-    }  
-   
-    .profile .motion .list li 
-    {   
-        border-bottom: 1px solid silver; 
     }
-    
+
+    .profile .motion .list li
+    {
+        border-bottom: 1px solid silver;
+    }
+
     .profile .motion .list li span.show-details
     {
         text-align:right;
@@ -1950,16 +1950,16 @@ textarea {
 
     .profile .motion .list li span.motion-event-entry-left
     {
-        float:left; 
+        float:left;
         margin-top:4px;
     }
 
     .profile .motion .list li span.motion-event-entry-right
     {
-        float:right; 
+        float:right;
         margin-top:4px;
     }
-    
+
     .profile .motion .motion-joint-seconder-date
     {
         margin-top:8px;
@@ -1981,250 +1981,250 @@ textarea {
     {
         margin-top:8px;
     }
-    
+
    /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Vote List
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */          
-   
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
     .profile>div>div.vote
-    {        
+    {
         width:520px;
         float:left;
         padding-left: 20px;
-    } 
-    
+    }
+
     .profile .vote .list li
     {
         font-size:0.75em;
-        height: auto;     
-        width: 100%;   
-        display:inline-block;      
-        min-height:120px;     
-    } 
-    
+        height: auto;
+        width: 100%;
+        display:inline-block;
+        min-height:120px;
+    }
+
     .profile .vote .list li .vote-header
     {
         border-bottom: 1px silver dotted;
         width: 100%;
-        float:left; 
-        margin-bottom:10px;       
+        float:left;
+        margin-bottom:10px;
     }
-    
+
     .profile .vote .list li .vote-number
     {
         color: #0059c1;
-        font-size:1.2em;        
+        font-size:1.2em;
         font-weight:bold;
         padding-right:20px;
     }
-        
+
     .profile .vote .list li .vote-value
     {
-        font-weight:bold;        
+        font-weight:bold;
         text-align: right;
     }
-    
+
     .profile .vote .list li .vote
     {
         text-align: right;
     }
-    
+
     .profile .vote .list li span.vote-date
-    {   
-        color:gray;                  
-    }  
-        
+    {
+        color:gray;
+    }
+
     .profile .vote .list li .decision-result
     {
         font-weight:bold;
         text-transform:uppercase;
     }
-    
+
     .profile .vote .list li .parliament-sitting
-    {        
-        padding-bottom:10px;        
-    }   
-    
+    {
+        padding-bottom:10px;
+    }
+
     .profile .vote .list li .vote-subject
     {
-        font-weight:bold;        
+        font-weight:bold;
         padding-bottom:10px;
         width: 385px;
-    }    
-    
+    }
+
     .vote .toolbar,
     .sort.toolbar
-    {        
-        border-bottom: none;             
+    {
+        border-bottom: none;
     }
-           
-       
+
+
    /*
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Constituency Profile
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     */
-   
+
     .constituency.profile.overview.offices
-    {        
+    {
         margin-top:0px;
         padding-top:0px;
         padding-left:30px;
-        border-left: 1px dotted silver;   
-        display:inline-block;   
+        border-left: 1px dotted silver;
+        display:inline-block;
         width:350px;
     }
-    
+
     .wrap
     {
         display:inline-block;
         width:390px;
-        overflow:visible;        
+        overflow:visible;
     }
-        
+
    /*
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Membership
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     */
-    
+
     div[class^="small-spinner-"]
-    {        
-        display:none;              
-        float:right;            
+    {
+        display:none;
+        float:right;
         z-index:1;
-        width:auto;    
-        height:32px; 
-        margin-top: -30px;        
+        width:auto;
+        height:32px;
+        margin-top: -30px;
     }
-    
+
     div[class^="small-spinner-committee"]
-    {        
-        margin-top: 0px;        
-    }          
-    
-    div.list.membership 
-    {       
-        font-size: 0.875em;        
+    {
+        margin-top: 0px;
+    }
+
+    div.list.membership
+    {
+        font-size: 0.875em;
         padding-top:5px;
-        padding-left:5px; 
-    }  
-    
+        padding-left:5px;
+    }
+
     div.collapsable li
-    {       
-        list-style: none;                
-    }  
-    
+    {
+        list-style: none;
+    }
+
     div.collapsable ul
-    {           
+    {
         padding-left:20px;
-    } 
-    
+    }
+
     div.collapsable ul>li>ul
-    {   
+    {
         padding-left:25px;
         padding-top: 0px;
-        margin-top: 0px; 
-        margin-bottom: 0px;         
-    } 
-   
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
     div.collapsable ul>li>a
-    {   
+    {
         text-decoration:none;
-        color:#666666;        
-        font-size: 0.875em;        
-    } 
-    
-    div.collapsable ul>li span 
-    {   
-        color:#666666;                 
-        font-size: 0.875em;            
-    } 
-    
+        color:#666666;
+        font-size: 0.875em;
+    }
+
+    div.collapsable ul>li span
+    {
+        color:#666666;
+        font-size: 0.875em;
+    }
+
     div.collapsable ul>li span a
-    {   
-        color: #0059c1;                        
+    {
+        color: #0059c1;
          text-decoration:none;
-    } 
-    
+    }
+
     div.collapsable ul>li span a:hover
-    {   
-        text-decoration:underline;  
-    } 
-    
-    div.collapsable ul>li
-    {   
-        padding-bottom: 8px;
-    }     
-    
-    div.collapsable ul>li>a:hover
-    {       
-        text-decoration:underline;      
-    } 
-    
-    div.membershipsection 
-    {   
-        padding-bottom:15px;
-        padding-top: 0px;                        
-    }        
-           
-    div.membershipsection>a
-    {   
-        font-size: 0.875em;            
-        color: #666666;        
-        text-decoration:none;    
-        display:inline-block;         
-        width: 100%;   
-    } 
-    
-    div.membershipsection>a:hover
-    {   
-        color: #666666;        
+    {
         text-decoration:underline;
-    }    
-    
+    }
+
+    div.collapsable ul>li
+    {
+        padding-bottom: 8px;
+    }
+
+    div.collapsable ul>li>a:hover
+    {
+        text-decoration:underline;
+    }
+
+    div.membershipsection
+    {
+        padding-bottom:15px;
+        padding-top: 0px;
+    }
+
+    div.membershipsection>a
+    {
+        font-size: 0.875em;
+        color: #666666;
+        text-decoration:none;
+        display:inline-block;
+        width: 100%;
+    }
+
+    div.membershipsection>a:hover
+    {
+        color: #666666;
+        text-decoration:underline;
+    }
+
     img[class^="icon-"]
-    {        
+    {
         margin-right:10px;
         margin-left:1px;
         margin-bottom:2px;
-    }       
-    
+    }
+
     div.list.membership span[class^="icon-"]
-    {       
+    {
         display:none;
-    }           
-   
+    }
+
     span.membershipsectionempty
-    {       
-        font-size: 0.875em;            
+    {
+        font-size: 0.875em;
         color: black;
         margin-left: 31px;
-    }               
-   
-    
+    }
+
+
     /*
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Party Standing
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-    */    
-  
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    */
+
     div.last-updated
-    {       
-        font-size: 0.875em;            
+    {
+        font-size: 0.875em;
         padding-top:18px;
         padding-bottom:10px;
         float:right;
         clear:both;
-    }    
+    }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    Floor Plan
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */   
-   
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
     #FloorPlan-OtherFormats
     {
-        text-align:right; 
+        text-align:right;
         margin-top:-31px;           /* Get it close to the page's site title */
         margin-bottom:10px;
     }
@@ -2232,39 +2232,39 @@ textarea {
     #RefinersBar
     {
     }
-    
+
     #FloorPlan-DissolutionMessage
     {
         text-align:center;
-        margin-bottom:26px; 
-        margin-top:-4px; 
+        margin-bottom:26px;
+        margin-top:-4px;
         font-size: 0.875em;
     }
-    
+
     .RefinerLabel
     {
         font-size:.75em;
     }
-    
+
     .FloorPlan-Refiner
     {
-        display:inline-block; 
+        display:inline-block;
         vertical-align:middle;
     }
-    
+
     .FloorPlan-RefinerValues
     {
         font-size:.8em;
         height:24px;
     }
-    
+
     #FloorPlan-ProvinceList
     {
         width:220px;
         height:24px;
         margin-bottom:16px;
     }
-    
+
     #FloorPlan-GenderList
     {
         width:150px;
@@ -2272,16 +2272,16 @@ textarea {
         margin-left:0px;
         margin-bottom:16px;
     }
-    
+
     #FloorPlan-ClearRefiners
     {
         height:20px;
         width:20px;
         margin-bottom:14px;
-        background-image:url("images/floorplan-clear.png");
+        background-image:url("../images/floorplan-clear.png");
         background-repeat:no-repeat;
         background-position:center;
-        display:inline-block; 
+        display:inline-block;
         vertical-align:middle;
         cursor:pointer;cursor:hand;
     }
@@ -2291,7 +2291,7 @@ textarea {
         float:right;
         vertical-align:middle;
     }
-    
+
     #FloorPlan-FindMPInput
     {
         width:200px;
@@ -2308,17 +2308,17 @@ textarea {
         box-shadow: none;
         background: transparent;
    }
-    
+
    #FloorPlan-TextboxContainer
    {
-       display:inline-block; 
-       vertical-align:middle; 
-       padding-left:3px; 
-       width:240px; 
-       height:24px; 
+       display:inline-block;
+       vertical-align:middle;
+       padding-left:3px;
+       width:240px;
+       height:24px;
        border:1px solid rgb(186,188,194);
    }
-    
+
     #FloorPlan-ClearFindMP
     {
         float:right;
@@ -2328,19 +2328,19 @@ textarea {
         margin-top:2px;
         margin-right:2px;
         margin-bottom:2px;
-        background-image:url("images/floorplan-clear.png");
+        background-image:url("../images/floorplan-clear.png");
         background-repeat:no-repeat;
         background-position:middle;
-        display:inline-block; 
+        display:inline-block;
         vertical-align:top;
         cursor:pointer;cursor:hand;
     }
-    
+
     /*PT #35614*/
     input[class="disable-clear-button"]::-ms-clear {
         display: none;
     }
-    
+
     #FloorPlan-FindMPButton
     {
         line-height:23px;
@@ -2349,29 +2349,29 @@ textarea {
         padding-top:0px;
         margin-left:3px;
     }
-     
+
     .FloorPlanCard-FilterTitle-LeftAligned
     {
-        font-size:.85em; 
+        font-size:.85em;
         margin-bottom:16px;
         text-align:left;
     }
-   
+
     .FloorPlanCard-FilterTitle-RightAligned
     {
-        font-size:.85em; 
+        font-size:.85em;
         margin-bottom:16px;
         text-align:right;
     }
-    
+
     table.FloorPlan
     {
         display:table;
         width:100%;
     }
-    
+
     td.FloorPlanSeat
-    {        
+    {
         width:1%;
         text-align:center;
         vertical-align:middle;
@@ -2380,15 +2380,15 @@ textarea {
         line-height:30px;
         cursor:pointer;cursor:hand;
     }
-        
+
     td.FloorPlanSeatDisabled
     {
         margin:1px solid white;
         opacity:0.2;
     }
-    
+
     td.FloorPlanEmptySeat
-    {        
+    {
         width:1%;
         text-align:center;
         vertical-align:middle;
@@ -2397,14 +2397,14 @@ textarea {
         line-height:30px;
         cursor:default;cursor:default;
     }
-        
+
     td.FloorPlanEmptySeatDisabled
     {
         border:1px 1px;
         border-color:White;
         opacity:0.2;
     }
-    
+
     td.SeatSelected
     {
         background-image:url("images/check-mark.png");
@@ -2412,7 +2412,7 @@ textarea {
         background-position:center;
         border:1px solid white;
     }
-    
+
     .FloorPlan-SeatCursor
     {
         border:5px solid transparent;
@@ -2420,12 +2420,12 @@ textarea {
         color:white;
         text-align:center;
     }
-    
+
    .FloorPlan-SeatCursor:hover
     {
-        border:5px solid white; 
+        border:5px solid white;
     }
-     
+
     .FloorPlan-SeatCursor-PM
     {
         border:5px solid transparent;
@@ -2436,13 +2436,13 @@ textarea {
         opacity:0.8;
         height:auto;
     }
-    
+
    .FloorPlan-SeatCursor-PM:hover
     {
-        border:5px solid white; 
+        border:5px solid white;
         opacity:1;
     }
-     
+
     .FloorPlan-SeatCursor-Speaker
     {
         border:5px solid transparent;
@@ -2451,13 +2451,13 @@ textarea {
         text-align:center;
         background-color:white;
     }
-    
+
    .FloorPlan-SeatCursor-Speaker:hover
     {
-        border:5px solid white; 
+        border:5px solid white;
         opacity:1;
     }
-      
+
     .FloorPlan-SeatCursor-CabinetMember
     {
         border:5px solid transparent;
@@ -2468,14 +2468,14 @@ textarea {
         opacity:0.4;
         height:auto;
     }
-    
+
    .FloorPlan-SeatCursor-CabinetMember:hover
     {
-        border:5px solid white; 
+        border:5px solid white;
         opacity:1;
         color:white;
     }
-   
+
     .FloorPlan-EmptySeatCursor
     {
         border:5px solid transparent;
@@ -2483,12 +2483,12 @@ textarea {
         color:white;
         text-align:center;
     }
-    
+
    .FloorPlan-EmptySeatCursor:hover
     {
-        border:5px solid transparent; 
+        border:5px solid transparent;
     }
-    
+
     td.FloorPlanNonSeat
     {
         width:1%;
@@ -2498,30 +2498,30 @@ textarea {
         line-height:30px;
         border:0px solid gray;
     }
-    
+
     #FloorPlan-SpeakerRow
     {
         vertical-align:middle;
         width: 100%;
         height: 126px;
     }
-    
+
     #FloorPlanCard-Link
     {
         color:black;
         text-decoration:none;
     }
-    
+
     #FloorPlanCard-Horizontal
     {
-        display:block; 
-        width:260px; 
+        display:block;
+        width:260px;
         vertical-align:middle;
-        margin-left:auto; 
+        margin-left:auto;
         margin-right:auto;
         padding-left:180px;
     }
-    
+
     #FloorPlanCardPhoto
     {
         width: 60px;
@@ -2531,20 +2531,20 @@ textarea {
         float:left;
         vertical-align:middle;
     }
-    
+
     #FloorPlanCard-Horizontal-Details
     {
-        float:left; 
-        font-size:.75em; 
+        float:left;
+        font-size:.75em;
         margin-top:13px;
-        margin-left:10px; 
+        margin-left:10px;
         max-width:180px;
     }
-    
+
     #FloorPlanCard-FilterTitle
     {
     }
-    
+
     #FloorPlan-SpeakerSeatTable
     {
         width:25px;
@@ -2552,7 +2552,7 @@ textarea {
         margin-top:36px;
         margin-left:19px
     }
-    
+
     #FloorPlan-SpeakerGraphics-en-F, #FloorPlan-SpeakerGraphics-en-M, #FloorPlan-SpeakerGraphics-en-
     {
         float:left;
@@ -2564,7 +2564,7 @@ textarea {
         margin-top:11px;
         margin-bottom:11px;
     }
-   
+
     #FloorPlan-SpeakerGraphics-fr-F         /* Female Speaker */
     {
         float:left;
@@ -2576,7 +2576,7 @@ textarea {
         margin-top:11px;
         margin-bottom:11px;
     }
-   
+
     #FloorPlan-SpeakerGraphics-fr-M, #FloorPlan-SpeakerGraphics-fr-         /* Male Speaker */
     {
         float:left;
@@ -2588,7 +2588,7 @@ textarea {
         margin-top:11px;
         margin-bottom:11px;
     }
-    
+
     #FloorPlan-SergeantGraphics
     {
         float:right;
@@ -2598,15 +2598,15 @@ textarea {
         width:65px;
         height:127px;
     }
-    
+
     #FloorPlan-ProvinceCard
     {
         float:left;
-        display:block; 
-        width:200px; 
+        display:block;
+        width:200px;
         vertical-align:middle;
         text-align:center;
-        margin-left:auto; 
+        margin-left:auto;
         margin-right:auto;
         padding-left:160px;
     }
@@ -2618,24 +2618,24 @@ textarea {
         margin-top:14px;
         margin-bottom:0px;
         vertical-align:middle;
-        border:1px solid silver;        
+        border:1px solid silver;
     }
-    
+
     #FloorPlan-ProvinceName
     {
-        font-size:.75em; 
+        font-size:.75em;
         margin-top:6px;
         max-width:200px;
         text-align:center;
     }
-    
+
     .FloorPlan-Caucus-Banner
     {
         width: 100%;
         height: 6px;
         margin: 2px 0 2px 0;
     }
-    
+
     .hidden
     {
         display:none !important
@@ -2648,24 +2648,24 @@ textarea {
         text-align:left;
         border:0px solid red;
      }
-      
+
     .FloorPlan-CaucusLegendGroup
     {
         display:inline-block;
     }
-      
+
     .FloorPlan-CaucusLegendCaucus
     {
         display:inline-block;
-        font-size:.75em; 
+        font-size:.75em;
         margin-left:0px;
         border:0px solid blue;
     }
-    
+
     .FloorPlan-CaucusLegendColor
     {
         display:inline-block;
-        font-size:.75em; 
+        font-size:.75em;
         width:38px;
         height:18px;
         color:White;
@@ -2674,24 +2674,24 @@ textarea {
         vertical-align:middle;
         border:0px solid blue;
     }
-    
+
     .FloorPlan-CaucusLegendIndependentColor
     {
         display:inline-block;
-        font-size:.75em; 
+        font-size:.75em;
         width:38px;
         height:18px;
-        color:white;        
+        color:white;
         text-align:center;
         vertical-align:middle;
         margin-right:15px;
         border:0px solid black;
     }
-    
+
     .FloorPlan-CaucusLegendVacantColor
     {
         display:inline-block;
-        font-size:.75em; 
+        font-size:.75em;
         width:38px;
         height:18px;
         color:black;
@@ -2700,36 +2700,36 @@ textarea {
         vertical-align:middle;
         border:1px solid black;
     }
-    
+
     #FloorPlan-CaucusLegendNote
     {
         float:left;
-        text-align:left; 
-        font-size:.75em; 
-        margin-top:24px; 
+        text-align:left;
+        font-size:.75em;
+        margin-top:24px;
         margin-bottom:10px;
     }
-    
+
     #FloorPlan-CabinetLegend
     {
         margin-top:6px;
     }
-    
+
     #FloorPlan-CabinetLegendNote
     {
-        display:inline-block; 
-        font-size:.75em; 
+        display:inline-block;
+        font-size:.75em;
         margin-top:4px;
     }
-    
+
     #FloorPlan-CabinetLegendBullet
     {
-        display:inline-block; 
-        font-size:1.1em; 
-        margin-top:0px; 
+        display:inline-block;
+        font-size:1.1em;
+        margin-top:0px;
         margin-left:3px;
     }
-    
+
     .FloorPlan-LastUpdatedDateTime
     {
         font-size:.75em;
@@ -2740,8 +2740,8 @@ textarea {
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    Mini Floor Plan
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */ 
-    
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
     .MiniFloorPlan
     {
         display:table;
@@ -2751,7 +2751,7 @@ textarea {
     .MiniFloorPlanRow
     {
     }
-    
+
     .MiniFloorPlanSeat-Normal
     {
         display: table-cell;
@@ -2762,7 +2762,7 @@ textarea {
         border-bottom:1px solid white;
         border-right:1px solid white;
     }
-    
+
     .MiniFloorPlanSeat-NonSeat
     {
         display: table-cell;
@@ -2772,7 +2772,7 @@ textarea {
         border-bottom:1px solid white;
         border-right:1px solid white;
     }
-        
+
     #MiniFloorPlanSeat-Highlighted
     {
         display: table-cell;
@@ -2792,19 +2792,19 @@ textarea {
         height:22px;
         border:0px solid orange;
     }
-    
+
     #MiniFloorPlan-SpeakerSeatTable
     {
         width:5px;
         height:5px;
     }
-    
+
     #MiniFloorPlan-SpeakerContainer
     {
         margin-top:7px;
         margin-left:2px;
     }
-    
+
     #MiniFloorPlan-SpeakerGraphics
     {
         float:left;
@@ -2828,8 +2828,8 @@ textarea {
         margin-top:0px;
         margin-bottom:1px;
         margin-left:163px;
-    } 
-    
+    }
+
     #MiniFloorPlan-SergeantGraphics-Extended
     {
         float:right;
@@ -2841,9 +2841,9 @@ textarea {
         margin-top:0px;
         margin-bottom:1px;
         margin-left:194px;
-    } 
-    
-    
+    }
+
+
     a.floorPlanLink, a.floorPlanLink:visited, a.floorPlanLink:hover
     {
         margin-top:10px;
@@ -2851,7 +2851,7 @@ textarea {
         text-decoration:none;
         background-color:#ffffff;
     }
-   
+
 
 /*================================================================================================================================*/
 /* END Author's custom styles                                                                                                     */
@@ -2967,4 +2967,3 @@ textarea {
 @media only screen and (min-width: 35em) {
     /* Style adjustments for viewports that meet the condition */
 }
-
