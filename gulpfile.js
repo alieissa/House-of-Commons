@@ -2,7 +2,7 @@
 
 const gulp = require('gulp');
 const jshint  = require('gulp-jshint');
-const babelify = require('babelify');
+// const babelify = require('babelify');
 const browserify = require('browserify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
@@ -24,10 +24,8 @@ function lint() {
 
 function es6() {
 	browserify('./app.js')
-		.transform('babelify', {
-			presets: ['es2015']
-		})
-		.bundle()
+		.transform('babelify', { presets: ['es2015'] })
+		.bundle().on('error', console.error.bind(console))
 		.pipe(source('app.js'))
 		.pipe(buffer())
 		.pipe(gulp.dest('dist/'));
