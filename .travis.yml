@@ -3,5 +3,5 @@ node_js: 6.6.0
 deploy:
   provider: heroku
   api_key:
-    secure: d6f1e0bb-1de0-48f0-bc85-0b9f890980bf
+    secure: <API_KEY>
   app: house-of-commons
