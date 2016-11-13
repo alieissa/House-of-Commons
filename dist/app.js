@@ -162,18 +162,24 @@ function clearMPCard() {
 
     $('#FloorPlanCard-Horizontal').attr('class', 'free');
     $('#FloorPlanCard-Horizontal').css('visibility', 'hidden');
+
+    return;
 }
 
 function clearRefiners() {
 
-    $('#FloorPlan-ProvinceList').val(0); // Set to All provinces
-    $('#FloorPlan-GenderList').val('A'); // Set to Both Geders
+    $('#FloorPlan-ProvinceList').val('All');
+    $('#FloorPlan-GenderList').val('Both');
+
+    return;
 }
 
 function clearSearchBox() {
 
     $('#FloorPlan-ClearFindMP').addClass('hidden');
     $('#FloorPlan-FindMPInput').val('');
+
+    return;
 }
 
 function handleClearFindMPClick() {
@@ -183,9 +189,32 @@ function handleClearFindMPClick() {
         d3.selectAll('rect').attr('opacity', 1);
     }
 
+    var message = '334 Members currently have seats in the House of Commons (88 Females, 246 Males)';
+    $('#FloorPlanCard-FilterTitle').html(message);
+    $('#FloorPlanCard-FilterTitle').attr('class', 'FloorPlanCard-FilterTitle-LeftAligned');
     clearSearchBox();
+
     return;
-    // clearRefiners();
+}
+
+function handleProvRefinerChange() {
+
+    var provinceId = $('#FloorPlan-ProvinceList').val();
+    var gender = $('#FloorPlan-GenderList').val();
+    var selector = provinceId === 'All' ? 'rect' : '[province="' + provinces[provinceId] + '"]';
+
+    var totalCount = d3.selectAll('' + selector).size();
+    var femaleCount = d3.selectAll(selector + '[gender="F"]').size();
+    var maleCount = d3.selectAll(selector + '[gender="M"]').size();
+
+    var message = ' ' + totalCount + ' Members currently have seats in the House of Commons (' + femaleCount + ' Females, ' + maleCount + ' Males)';
+    message = provinceId === 'All' ? message : provinces[provinceId] + ': ' + message;
+
+    $('#FloorPlanCard-FilterTitle').html(message);
+    $('#FloorPlanCard-FilterTitle').attr('class', 'FloorPlanCard-FilterTitle-LeftAligned');
+    setFilteredOpacity(provinces[provinceId], gender);
+
+    return;
 }
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////
@@ -193,19 +222,12 @@ function handleClearFindMPClick() {
 // and/or province. MPs that don't are 'defocused'
 //////////////////////////////////////////////////////////////////////////////////////////////*/
 
-function handleFilterChange() {
+function handleGenderRefinerChange() {
 
     var provinceId = $('#FloorPlan-ProvinceList').val();
     var gender = $('#FloorPlan-GenderList').val();
-    var setOpacity = function setOpacity(d) {
 
-        var isSameGender = d.Gender === gender || gender === 'A';
-        var isSameProvince = provinceId === '0' || provinces[provinceId] === d.Province;
-
-        return !isSameGender || !isSameProvince ? 0.3 : 1;
-    };
-
-    d3.selectAll('rect').attr('opacity', setOpacity);
+    setFilteredOpacity(provinces[provinceId], gender);
 
     clearMPCard();
     clearSearchBox();
@@ -227,16 +249,23 @@ function handleFindMPButtonClick() {
     var searchTerm = $('#FloorPlan-FindMPInput').val();
     var mps = house.separateMPs(searchTerm);
 
+    // Put MPs that match search criteria in focus. defocus others.
     if (mps.includedMPs.size() > 0) {
-        mps.excludedMPs.attr('opacity', 0.3); //defocus
+        mps.excludedMPs.attr('opacity', 0.3);
         mps.includedMPs.attr('opacity', 1);
         $('#FloorPlan-FindMP').attr('status', 'active');
-    } else {
-        // Show everyone, then hide clear button
-        d3.selectAll('rect').attr('opacity', 1);
-        $('#FloorPlan-ClearFindMP').addClass('hidden');
-        $('#FloorPlan-FindMP').attr('status', 'dormant');
     }
+    // Show everyone, then hide clear button
+    else {
+
+            d3.selectAll('rect').attr('opacity', 1);
+            $('#FloorPlan-ClearFindMP').addClass('hidden');
+            $('#FloorPlan-FindMP').attr('status', 'dormant');
+        }
+
+    // Show result of search
+    $('#FloorPlanCard-FilterTitle').html(mps.includedMPs.size() + ' Search Result');
+    $('#FloorPlanCard-FilterTitle').attr('class', 'FloorPlanCard-FilterTitle-RightAligned');
 
     return;
 }
@@ -334,14 +363,43 @@ function renderMps(data, block, index, side) {
     });
 
     // Assign block seats
-    _block.selectAll('rect').data(data).enter().append('rect').attr('x', getMpX).attr('y', getMpY).attr('width', width).attr('height', height).attr('status', 'dormant').on('click', handleRectClick).on('mouseout', handleRectMouseout).on('mouseover', handleRectMouseover).attr('fill', function (d) {
+    _block.selectAll('rect').data(data).enter().append('rect').attr('x', getMpX).attr('y', getMpY).attr('width', width).attr('height', height).attr('status', 'dormant').attr('gender', function (d) {
+        return d.Gender;
+    }).attr('province', function (d) {
+        return d.Province;
+    }).on('click', handleRectClick).on('mouseout', handleRectMouseout).on('mouseover', handleRectMouseover).attr('fill', function (d) {
         return colours[d['Political Affiliation']];
     });
 
     return;
 }
 
-$('.FloorPlan-RefinerValues').change(handleFilterChange);
+function setFilteredOpacity(province, gender) {
+
+    var selector = void 0;
+
+    if (province === 'All' && gender === 'Both') {
+        d3.selectAll('rect').attr('opacity', 1);
+        return;
+    }
+
+    if (province === 'All' && gender !== 'Both') {
+        selector = '[gender="' + gender + '"]';
+    } else if (province !== 'All' && gender === 'Both') {
+        selector = '[province="' + province + '"]';
+    } else {
+        selector = '[province="' + province + '"][gender="' + gender + '"]';
+    }
+
+    d3.selectAll('rect').attr('opacity', 0.3);
+    d3.selectAll(selector).attr('opacity', 1);
+
+    return;
+}
+
+$('#FloorPlan-ProvinceList').change(handleProvRefinerChange);
+$('#FloorPlan-GenderList').change(handleGenderRefinerChange);
+
 $('#FloorPlan-TextboxContainer').keypress(handleTBCKeypress);
 $('#FloorPlan-FindMPButton').click(handleFindMPButtonClick);
 $('#FloorPlan-ClearFindMP').click(handleClearFindMPClick);
