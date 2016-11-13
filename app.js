@@ -46,7 +46,9 @@ const seatingBlocks = [
 
 const house = new House('https://houseofcommons-d40a9.firebaseio.com', '/MembersOfParliament');
 
-
+/* ////////////////////////////////////////////////////////////////////////////////////////////
+// Resets MP card container.
+//////////////////////////////////////////////////////////////////////////////////////////////*/
 function clearMPCard() {
 
     $('#FloorPlanCard-Horizontal').attr('class', 'free');
@@ -55,6 +57,9 @@ function clearMPCard() {
     return;
 }
 
+/* ////////////////////////////////////////////////////////////////////////////////////////////
+// Resets refiners.
+//////////////////////////////////////////////////////////////////////////////////////////////*/
 function clearRefiners() {
 
     $('#FloorPlan-ProvinceList').val('All');
@@ -63,6 +68,9 @@ function clearRefiners() {
     return;
 }
 
+/* ////////////////////////////////////////////////////////////////////////////////////////////
+// Resets search box.
+//////////////////////////////////////////////////////////////////////////////////////////////*/
 function clearSearchBox() {
 
     $('#FloorPlan-ClearFindMP').addClass('hidden');
@@ -71,6 +79,9 @@ function clearSearchBox() {
     return;
 }
 
+/* ////////////////////////////////////////////////////////////////////////////////////////////
+// Resets stats banner, gender and province refiners, focuses entire house.
+//////////////////////////////////////////////////////////////////////////////////////////////*/
 function handleClearFindMPClick () {
 
     if($('#FloorPlan-FindMP').attr('status') === 'active') {
@@ -86,6 +97,9 @@ function handleClearFindMPClick () {
     return;
 }
 
+/* ////////////////////////////////////////////////////////////////////////////////////////////
+// Focuses MPs that belong to the selected province or all.
+//////////////////////////////////////////////////////////////////////////////////////////////*/
 function handleProvRefinerChange() {
 
     let gender = $('#FloorPlan-GenderList').val();
@@ -108,10 +122,8 @@ function handleProvRefinerChange() {
 }
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////
-// This function (callback) highlight MPs that meet the users specification of gender
-// and/or province. MPs that don't are 'defocused'
+// Focuses MPs that belong to the selected gender or all.
 //////////////////////////////////////////////////////////////////////////////////////////////*/
-
 function handleGenderRefinerChange() {
 
     let provinceId = $('#FloorPlan-ProvinceList').val();
@@ -126,6 +138,11 @@ function handleGenderRefinerChange() {
     return;
 }
 
+/* ////////////////////////////////////////////////////////////////////////////////////////////
+// Focuses MPs that meet the search criteria and displays their number on stats header.
+// The stats header is re-aligned to the left, so its position is right under the
+// find MP button
+//////////////////////////////////////////////////////////////////////////////////////////////*/
 function handleFindMPButtonClick() {
 
     // If search filter is empty do nothing
@@ -161,6 +178,9 @@ function handleFindMPButtonClick() {
     return;
 }
 
+/* ////////////////////////////////////////////////////////////////////////////////////////////
+// Displays MP information on MP card and makes sure not replaced on mouse events
+//////////////////////////////////////////////////////////////////////////////////////////////*/
 function handleRectClick(mp) {
 
     let mpStatus = d3.select(this).attr('status');
@@ -184,6 +204,9 @@ function handleRectClick(mp) {
     return;
 }
 
+/* ////////////////////////////////////////////////////////////////////////////////////////////
+// Hides MP information on MP card when MP card is free
+//////////////////////////////////////////////////////////////////////////////////////////////*/
 function handleRectMouseout() {
 
     let status = $('#FloorPlanCard-Horizontal').attr('class');
@@ -194,6 +217,9 @@ function handleRectMouseout() {
     return;
 }
 
+/* ////////////////////////////////////////////////////////////////////////////////////////////
+// Displays MP information on MP card when MP card is free
+//////////////////////////////////////////////////////////////////////////////////////////////*/
 function handleRectMouseover(mp) {
 
    let visibility = $('#FloorPlanCard-Horizontal').css('visibility');
@@ -204,6 +230,10 @@ function handleRectMouseover(mp) {
    return;
 }
 
+/* ////////////////////////////////////////////////////////////////////////////////////////////
+// Text box container keypress handler. Displays the clear MP crosshairs when a user starts
+// typing
+//////////////////////////////////////////////////////////////////////////////////////////////*/
 function handleTBCKeypress() {
 
     if($('#FloorPlan-ClearFindMP').hasClass('hidden')) {
@@ -212,6 +242,10 @@ function handleTBCKeypress() {
     return;
 }
 
+/* ////////////////////////////////////////////////////////////////////////////////////////////
+// Displays MP information and their picture on the MP card container. The entire
+// container is a link to the MP parliamentary page
+//////////////////////////////////////////////////////////////////////////////////////////////*/
 function renderMPCard(mp) {
 
     let title = mp['Honorific Title'];
@@ -234,7 +268,6 @@ function renderMPCard(mp) {
 // Assigns appropriate click handlers to each MP. Note that seat assignment is done
 // by block, so a particular MP woud be found under <svg> ---> <g> ---> <rect>
 //////////////////////////////////////////////////////////////////////////////////////////////*/
-
 function renderMps(data, block, index, side) {
 
     let padding = 10;
@@ -282,6 +315,9 @@ function renderMps(data, block, index, side) {
     return;
 }
 
+/* ////////////////////////////////////////////////////////////////////////////////////////////
+// Focuses MPs that are from specified province and gender.
+//////////////////////////////////////////////////////////////////////////////////////////////*/
 function setFilteredOpacity(province, gender) {
 
     let selector;
@@ -310,11 +346,9 @@ function setFilteredOpacity(province, gender) {
 
 $('#FloorPlan-ProvinceList').change(handleProvRefinerChange)
 $('#FloorPlan-GenderList').change(handleGenderRefinerChange)
-
 $('#FloorPlan-TextboxContainer').keypress(handleTBCKeypress);
 $('#FloorPlan-FindMPButton').click(handleFindMPButtonClick);
 $('#FloorPlan-ClearFindMP').click(handleClearFindMPClick);
-
 
 // App 'entry point'
 seatingBlocks.forEach((block, index) => {
