@@ -88,8 +88,9 @@ function handleClearFindMPClick () {
 
 function handleProvRefinerChange() {
 
-    let provinceId = $('#FloorPlan-ProvinceList').val();
     let gender = $('#FloorPlan-GenderList').val();
+    let provinceId = $('#FloorPlan-ProvinceList').val();
+    let province = provinceId === 'All' ? provinceId : provinces[provinceId];
     let selector = provinceId === 'All' ? 'rect' : `[province="${provinces[provinceId]}"]`;
 
     let totalCount = d3.selectAll(`${selector}`).size();
@@ -101,7 +102,7 @@ function handleProvRefinerChange() {
 
     $('#FloorPlanCard-FilterTitle').html(message);
     $('#FloorPlanCard-FilterTitle').attr('class', 'FloorPlanCard-FilterTitle-LeftAligned');
-    setFilteredOpacity(provinces[provinceId], gender);
+    setFilteredOpacity(province, gender);
 
     return;
 }
@@ -114,9 +115,10 @@ function handleProvRefinerChange() {
 function handleGenderRefinerChange() {
 
     let provinceId = $('#FloorPlan-ProvinceList').val();
+    let province = provinceId === 'All' ? provinceId : provinces[provinceId];
     let gender = $('#FloorPlan-GenderList').val();
 
-    setFilteredOpacity(provinces[provinceId], gender);
+    setFilteredOpacity(province, gender);
 
     clearMPCard();
     clearSearchBox();
@@ -279,7 +281,8 @@ function renderMps(data, block, index, side) {
 function setFilteredOpacity(province, gender) {
 
     let selector;
-
+    console.log(province);
+    console.log(gender);
     if(province === 'All' && gender === 'Both') {
         d3.selectAll('rect').attr('opacity', 1);
         return;
