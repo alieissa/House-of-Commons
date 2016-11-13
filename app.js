@@ -165,8 +165,11 @@ function handleRectClick(mp) {
 
     let mpStatus = d3.select(this).attr('status');
 
+    d3.select('[fill=yellow]').attr('fill', (d) => colours[d['Political Affiliation']]);
+
     if(mpStatus === 'dormant') {
         d3.select(this).attr('status', 'active');
+        d3.select(this).attr('fill', 'yellow');
         $('#FloorPlanCard-Horizontal').attr('class', 'locked');
         $('#FloorPlanCard-Horizontal').css('visibility', 'visible');
     }
@@ -177,6 +180,7 @@ function handleRectClick(mp) {
     }
 
     renderMPCard(mp);
+
     return;
 }
 

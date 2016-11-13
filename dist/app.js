@@ -276,8 +276,13 @@ function handleRectClick(mp) {
 
     var mpStatus = d3.select(this).attr('status');
 
+    d3.select('[fill=yellow]').attr('fill', function (d) {
+        return colours[d['Political Affiliation']];
+    });
+
     if (mpStatus === 'dormant') {
         d3.select(this).attr('status', 'active');
+        d3.select(this).attr('fill', 'yellow');
         $('#FloorPlanCard-Horizontal').attr('class', 'locked');
         $('#FloorPlanCard-Horizontal').css('visibility', 'visible');
     } else {
@@ -287,6 +292,7 @@ function handleRectClick(mp) {
     }
 
     renderMPCard(mp);
+
     return;
 }
 
