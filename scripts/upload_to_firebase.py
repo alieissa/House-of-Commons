@@ -2,8 +2,8 @@ import csv
 import sys
 from firebase import firebase
 
-url = <URL>
-path = <PATH>
+url = "https://houseofcommons-d40a9.firebaseio.com"
+path = 'mps_f.csv'
 
 firebase = firebase.FirebaseApplication(url, None)
 
