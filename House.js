@@ -29,20 +29,14 @@ export class House {
 
     getImage(mp) {
 
-        let img = new Image();
-        img.onerror = (error) => {
-            console.log(`Unable to get image for ${mp.Fname} ${mp.Lname}`);
-            console.log(error);
-        };
-
         if(typeof mp.ImgName === "undefined") {
             mp.ImgName = `${mp.Lname}${mp.Fname}_${parties[mp["Political Affiliation"]]}`;
             mp.ImgName = mp.ImgName.replace(/[' \.-]/g, ''); // Take care of middle name letters and hyphenated last names
         }
 
-        mp.ImgUrl = `http://www.parl.gc.ca/Parliamentarians/Images/OfficialMPPhotos/42/${mp.ImgName}.jpg`;
-        img.src = mp.ImgUrl;
+        mp.ImgUrl = `/assets/images/Parliamentarians//${mp.ImgName}.jpg`;
 
+        console.log(mp.ImgUrl);
         return;
     }
 

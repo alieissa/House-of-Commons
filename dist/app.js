@@ -41,20 +41,14 @@ var House = exports.House = function () {
         key: 'getImage',
         value: function getImage(mp) {
 
-            var img = new Image();
-            img.onerror = function (error) {
-                console.log('Unable to get image for ' + mp.Fname + ' ' + mp.Lname);
-                console.log(error);
-            };
-
             if (typeof mp.ImgName === "undefined") {
                 mp.ImgName = '' + mp.Lname + mp.Fname + '_' + parties[mp["Political Affiliation"]];
                 mp.ImgName = mp.ImgName.replace(/[' \.-]/g, ''); // Take care of middle name letters and hyphenated last names
             }
 
-            mp.ImgUrl = 'http://www.parl.gc.ca/Parliamentarians/Images/OfficialMPPhotos/42/' + mp.ImgName + '.jpg';
-            img.src = mp.ImgUrl;
+            mp.ImgUrl = '/assets/images/Parliamentarians//' + mp.ImgName + '.jpg';
 
+            console.log(mp.ImgUrl);
             return;
         }
 
@@ -387,12 +381,14 @@ function renderMps(data, block, index, side) {
     var blockStart = block[0];
     var blockEnd = block[1];
     var blockOffset = blockStart * width - index * padding;
+
     var getMpX = function getMpX(d) {
 
         var xOffset = width + 1;
         var xBlockOffset = d.Column - blockStart; // Column - blockStart is offset within block
         return xBlockOffset * xOffset;
     };
+
     var getMpY = function getMpY(d) {
 
         var yOffset = height + 1;
@@ -400,7 +396,7 @@ function renderMps(data, block, index, side) {
     };
 
     // Group by seating block
-    var _block = d3.select('#' + side).append('g').attr('width', 1024).attr('height', 300).attr('transform', function () {
+    var _block = d3.select('#' + side).append('g').attr('width', 1024).attr('height', 300).attr('transform', function (d) {
         return 'translate (' + blockOffset + ', 0)';
     });
 
@@ -464,6 +460,7 @@ seatingBlocks.forEach(function (block, index) {
     });
 
     govMps.then(function (mps) {
+
         mps.forEach(function (mp) {
             return house.getImage(mp);
         }); // prefetch mp images

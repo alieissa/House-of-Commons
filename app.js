@@ -274,12 +274,14 @@ function renderMps(data, block, index, side) {
     let blockStart = block[0];
     let blockEnd = block[1];
     let blockOffset = (blockStart * width) - (index * padding);
+
     let getMpX = function(d) {
 
         let xOffset = width + 1;
         let xBlockOffset = d.Column - blockStart; // Column - blockStart is offset within block
         return xBlockOffset * xOffset;
     };
+
     let getMpY = function(d) {
 
         let yOffset = height + 1;
@@ -291,9 +293,7 @@ function renderMps(data, block, index, side) {
         .append('g')
         .attr('width', 1024)
         .attr('height', 300)
-        .attr('transform', () => {
-            return `translate (${blockOffset}, 0)`;
-        });
+        .attr('transform', d => `translate (${blockOffset}, 0)`);
 
     // Assign block seats
     _block.selectAll('rect')
@@ -305,8 +305,8 @@ function renderMps(data, block, index, side) {
         .attr('width', width)
         .attr('height', height)
         .attr('status', 'dormant')
-        .attr('gender', (d) => d.Gender)
-        .attr('province', (d) => d.Province)
+        .attr('gender', d => d.Gender)
+        .attr('province', d => d.Province)
         .on('click', handleRectClick)
         .on('mouseout', handleRectMouseout)
         .on('mouseover', handleRectMouseover)
@@ -356,14 +356,15 @@ seatingBlocks.forEach((block, index) => {
     let oppMps = house.getMps(0, 4, ...block);
     let govMps = house.getMps(7, 11, ...block);
 
-    oppMps.then((mps) => {
+    oppMps.then(mps => {
 
-        mps.forEach((mp) => house.getImage(mp)); // prefetch mp images
+        mps.forEach(mp => house.getImage(mp)); // prefetch mp images
         renderMps(mps, block, index, 'opposition');
     });
 
-    govMps.then((mps) => {
-        mps.forEach((mp) => house.getImage(mp)); // prefetch mp images
+    govMps.then(mps => {
+
+        mps.forEach(mp => house.getImage(mp)); // prefetch mp images
         renderMps(mps, block, index, 'government');
     });
 });
